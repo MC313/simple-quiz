@@ -1,1 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+$primary: #360568;
+$secondary: #7f557d;
+
+:root {
+  font-size: 16px;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100vh;
+  margin: 0px;
+  padding: 0px;
+  overflow: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}

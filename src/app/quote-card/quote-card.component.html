@@ -1,0 +1,12 @@
+<section class="fn-card" *ngIf="quote">
+  <article class="fn-card__title">
+    Topic: {{quote.tags[0]}}
+  </article>
+  <div class="fn-card__content">
+    {{quote.text}}
+  </div>
+  <div class="fn-card__buttons">
+    <button class="button button--active" (click)="sumbitAnswer(quote._id, true)">Real News</button>
+    <button class="button" (click)="sumbitAnswer(quote._id, false)">Fake News</button>
+  </div>
+</section>
