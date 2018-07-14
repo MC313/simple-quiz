@@ -1,4 +1,4 @@
-<section class="fn-card" *ngIf="quote">
+<section class="fn-card" *ngIf="quote; else loading">
   <article class="fn-card__title">
     Topic: {{quote.tags[0]}}
   </article>
@@ -9,4 +9,39 @@
     <button class="button button--active" (click)="sumbitAnswer(quote._id, true)">Real News</button>
     <button class="button" (click)="sumbitAnswer(quote._id, false)">Fake News</button>
   </div>
+
+  <!-- Answer Overlay -->
+  <div class="card-overlay">
+    <article class="correct" *ngIf="correct; else incorrect">
+      <h3>Correct Answer</h3>
+      <p>Source: </p>
+    </article>
+    <ng-template #incorrect>
+      <article class="incorrect">
+        <h3>Incorrect Answer</h3>
+        <p>Source: </p>
+      </article>
+    </ng-template>
+  </div>
 </section>
+
+<!-- Skeleton loading screen -->
+<ng-template #loading>
+  <section class="fn-card">
+    <article class="fn-card__title">
+      Topic:
+      <span class="skeleton__title"></span>
+    </article>
+    <div class="fn-card__content">
+      <span class="skeleton__content"></span>
+      <span class="skeleton__content"></span>
+      <span class="skeleton__content"></span>
+      <span class="skeleton__content"></span>
+      <span class="skeleton"></span>
+    </div>
+    <div class="fn-card__buttons">
+      <button class="button button--active">Real News</button>
+      <button class="button">Fake News</button>
+    </div>
+  </section>
+</ng-template>

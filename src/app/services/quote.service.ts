@@ -12,7 +12,7 @@ import { Observable, throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class QuoteService {
-  private baseUrl: string = 'localhost:3000';
+  private baseUrl: string = 'http://localhost:3000/api/v1';
 
   constructor(private http: HttpClient) {}
 
@@ -21,13 +21,13 @@ export class QuoteService {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
     return this.http
-      .get<any>(`http://localhost:3000/quote`, httpOptions)
+      .get<any>(`${this.baseUrl}/quote`, httpOptions)
       .pipe(catchError((err) => this.handleHttpError(err)));
   }
 
   answer(id: number, answer: boolean) {
     return this.http
-      .post(`http://localhost:3000/quote/${id}/${answer}`, {})
+      .post(`${this.baseUrl}/quote/${id}/${answer}`, {})
       .pipe(catchError((err) => this.handleHttpError(err)));
   }
 

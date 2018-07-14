@@ -1,6 +1,12 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  EventEmitter,
+  Output,
+  AfterViewInit
+} from '@angular/core';
 
-import { QuoteService } from '../services/quote.service';
 import { Quote } from '../Quote';
 
 @Component({
@@ -8,13 +14,16 @@ import { Quote } from '../Quote';
   templateUrl: './quote-card.component.html',
   styleUrls: ['./quote-card.component.scss']
 })
-export class QuoteCardComponent implements OnInit {
+export class QuoteCardComponent implements OnInit, AfterViewInit {
+  @Input() correct: object = {};
   @Input() quote: Quote;
   @Output() answered: EventEmitter<any> = new EventEmitter();
   constructor() {}
 
-  ngOnInit() {
-    console.log('quote 2', this.quote);
+  ngOnInit() {}
+
+  ngAfterViewInit() {
+    console.log('correct', this.correct);
   }
 
   sumbitAnswer(quoteId: string, answer: boolean) {
