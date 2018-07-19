@@ -11,15 +11,22 @@
   </div>
 
   <!-- Answer Overlay -->
-  <div class="card-overlay">
-    <article class="correct" *ngIf="correct; else incorrect">
+  <div class="card-overlay" [class.correct-overlay]="answer === 'CORRECT'" [class.incorrect-overlay]="answer === 'INCORRECT'">
+    <span class="card-overlay__hide" aria-label="close overlay" (click)="answer = null">&times;</span>
+    <article class="card-overlay__content" *ngIf="answer === 'CORRECT'; else incorrect">
+      <i class="material-icons">check_circle_outline</i>
       <h3>Correct Answer</h3>
-      <p>Source: </p>
+      <p>Source:
+        <a href={{quote.source}} *ngIf="quote.source">{{quote.source}}</a>
+      </p>
     </article>
     <ng-template #incorrect>
-      <article class="incorrect">
+      <article class="card-overlay__content">
+        <i class="material-icons">highlight_off</i>
         <h3>Incorrect Answer</h3>
-        <p>Source: </p>
+        <p>Source:
+          <a href={{quote.source}} *ngIf="quote.source">{{quote.source}}</a>
+        </p>
       </article>
     </ng-template>
   </div>

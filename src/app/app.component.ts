@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
 
 import { QuoteService } from './services/quote.service';
 import { Quote } from './Quote';
-import { HttpErrorResponse } from '@angular/common/http';
+import { Answer } from './Answer';
+import { AnswerValues } from './AnswerValues';
 
 @Component({
   selector: 'fn-root',
@@ -10,7 +12,7 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  correct: object;
+  answerVal: AnswerValues;
   quote: Quote;
 
   constructor(private quoteService: QuoteService) {}
@@ -20,16 +22,19 @@ export class AppComponent implements OnInit {
   }
 
   getQuote() {
-    this.quoteService.getQuote().subscribe((quote) => {
-      this.quote = quote;
-    });
+    this.quoteService
+      .getQuote()
+      .subscribe(
+        (quote) => (this.quote = quote),
+        (error: HttpErrorResponse) => console.error(error.message)
+      );
   }
 
   onSubmit(event) {
     this.quoteService.answer(event.quoteId, event.answer).subscribe(
-      (correctRes) => {
-        console.log('Correct Answer', correctRes);
-        this.correct = correctRes;
+      (answerRes: Answer) => {
+        console.log('Correct Answer', answerRes);
+        this.answerVal = answerRes.answer;
       },
       (error: HttpErrorResponse) => console.error(error.message)
     );
