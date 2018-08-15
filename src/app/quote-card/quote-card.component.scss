@@ -1,12 +1,10 @@
 @import '../../styles.scss';
 
-$border-radius: 8px;
-
 %skeleton-item {
   width: 150px;
   height: 17px;
   display: block;
-  border-radius: $border-radius;
+  border-radius: $card-border-radius;
   background-color: darken(#a288a6, 7%);
 }
 
@@ -19,12 +17,15 @@ $border-radius: 8px;
   overflow: hidden;
   margin: 0px 10px;
   padding: 30px;
-  padding-bottom: 15px;
+  padding-bottom: 50px;
   border: 1px solid lighten(#a288a6, 24%);
   border-bottom-color: lighten(#a288a6, 18%);
-  border-radius: $border-radius;
+  border-radius: $card-border-radius;
   box-shadow: 5px 5px 25px 0 rgba(46, 61, 73, 0.3);
   background-color: lighten(#a288a6, 28%);
+  @media screen and (min-width: 481px) {
+    padding-bottom: 15px;
+  }
 }
 
 .fn-card {
@@ -51,12 +52,12 @@ $border-radius: 8px;
   flex-direction: column;
   justify-content: center;
   .button {
-    border-style: none;
+    border: 2px solid $primary;
     width: 100%;
     min-height: 52px;
     height: 52px;
     display: block;
-    border-radius: 4px;
+    border-radius: $button-border-radius;
     color: $primary;
     transition: background-color 0.3s ease-in;
     &:first-of-type {
@@ -70,7 +71,7 @@ $border-radius: 8px;
       color: #ffffff;
       background-color: $primary;
     }
-    &--active {
+    &.button--active {
       color: #ffffff;
       background-color: $primary;
     }
@@ -114,7 +115,7 @@ $border-radius: 8px;
   left: 0;
   opacity: 0.92;
   transform: translateY(-100%);
-  border-radius: $border-radius;
+  border-radius: $card-border-radius;
   color: #ffffff;
   transition: all 0.4s linear;
 

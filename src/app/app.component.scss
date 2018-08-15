@@ -1,8 +1,74 @@
+@import '../styles.scss';
+
 :host {
   height: 100%;
   width: 100%;
   display: flex;
+  flex-direction: column;
+  background-color: #eeeeee;
+}
+
+.header {
+  width: 100%;
+  flex: 0 0 90px;
+  display: flex;
+  justify-content: flex-end;
   align-items: center;
+  background-color: #ffffff;
+  .button--topics {
+    width: 150px;
+    height: 52px;
+    display: block;
+    margin-right: 30px;
+    border: 2px solid lighten(#a288a6, 24%);
+    border-radius: $button-border-radius;
+    background-color: lighten(#a288a6, 28%);
+    color: $primary;
+  }
+}
+.topics-container {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  overflow: auto;
+  background-color: $primary;
+  &.show-topics {
+    flex: 0.3;
+    padding: 12px;
+    transition: flex 0.3s ease-in;
+  }
+  &.hide-topics {
+    flex: 0;
+    padding: 0px;
+    transition: flex 0.3s ease-out, padding 0.5s linear;
+  }
+  .topic {
+    min-width: 75px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    border-radius: 5px;
+    background-color: #e3e3e3;
+    color: $primary;
+    transition: background-color 0.3s ease-in;
+    &:hover {
+      cursor: pointer;
+      background-color: #ffffff;
+    }
+    p {
+      padding: 7px;
+      font-size: 0.9rem;
+    }
+  }
+}
+.main {
+  width: 100%;
+  height: 100%;
+  display: flex;
   justify-content: center;
+  align-items: center;
+  flex: 1;
   background-color: #ffffff;
 }

@@ -2,37 +2,28 @@ import { Injectable } from '@angular/core';
 import {
   HttpHeaders,
   HttpClient,
-  HttpErrorResponse,
-  HttpParams
+  HttpErrorResponse
 } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 
+import { Quote } from '../Quote';
+
 @Injectable({
   providedIn: 'root'
 })
-export class QuoteService {
+export class TopicsService {
   private baseUrl: string = 'http://localhost:3000/api/v1';
 
   constructor(private http: HttpClient) {}
 
-  getQuote(topic: string = null): Observable<any> {
-    const headers: HttpHeaders = new HttpHeaders({
-      'Content-Type': 'application/json'
-    });
-    const params = topic
-      ? { params: new HttpParams().set('topic', topic) }
-      : {};
-    const options = { headers, ...params };
+  getTopics(): Observable<any> {
+    const httpOptions: object = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
     return this.http
-      .get<any>(`${this.baseUrl}/quote`, options)
-      .pipe(catchError((err) => this.handleHttpError(err)));
-  }
-
-  answer(id: number, answer: boolean) {
-    return this.http
-      .post(`${this.baseUrl}/quote/${id}/${answer}`, {})
-      .pipe(catchError((err) => this.handleHttpError(err)));
+      .get<string[]>(`${this.baseUrl}/topics`, httpOptions)
+      .pipe(catchError((err: HttpErrorResponse) => this.handleHttpError(err)));
   }
 
   private handleHttpError(error: HttpErrorResponse) {
