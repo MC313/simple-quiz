@@ -11,43 +11,35 @@ import {
 } from '@angular/animations';
 
 export const quoteCardAnimations: {
-  readonly slideCardInOut: AnimationTriggerMetadata;
-  readonly slideCardOut: AnimationTriggerMetadata;
-  readonly slideCardUp: AnimationTriggerMetadata;
+  readonly slideCardInOut: AnimationTriggerMetadata;                                                              
 } = {
-  slideCardInOut: trigger('slideInOut', [
-    state('slideIn', style({ transform: 'translateX(0%)' })),
-    transition(':enter', [
+  slideCardInOut: trigger('slideCardInOut', [
+    state('slideIn', style({ transform: 'translateX(0)' })),
+    transition('void => *', [
       style({ transform: 'translateX(-100%)' }),
-      animate(300)
+      animate('700ms ease')
     ]),
-    transition(':leave', [
-      style({ transform: 'translateX(100%)' }),
-      animate(300)
-    ])
-  ]),
-
-  slideCardOut: trigger('slideCardInOut', [
-    state('slideIn', style({ transform: 'translateX(0%)' })),
-    transition(':enter', [
-      style({ transform: 'translateX(-100%)' }),
-      animate(300)
-    ]),
-    transition(':leave', [
-      style({ transform: 'translateX(100%)' }),
-      animate(300)
-    ])
-  ]),
-
-  slideCardUp: trigger('slideCardUp', [
-    // state('slideIn', style({ transform: 'translateX(0%)'})),
-    transition(':enter', [
-      style({ transform: 'translateX(-100%)' }),
-      animate(300)
-    ]),
-    transition(':leave', [
-      style({ transform: 'translateX(100%)' }),
-      animate(300)
+    transition('* => void', [
+      animate(
+        '200ms ease',
+        keyframes([
+          style({ transform: 'translateX(0%)' }),
+          style({ transform: 'translateX(150%)' })
+        ])
+      )
     ])
   ])
+
+  // slideCardInOut: trigger('slideCardInOut', [
+  //   state('slideIn', style({ transform: 'translateX(0%)' })),
+  //   state('slideOut', style({ transform: 'translateX(100%)' })),
+  //   transition('* => slideIn', [
+  //     style({ transform: 'translateX(0%)' }),
+  //     animate('800ms ease-in')
+  //   ]),
+  //   transition('* => slideOut', [
+  //     style({ transform: 'translateX(100%)' }),
+  //     animate('300ms ease-out')
+  //   ])
+  // ]),
 };

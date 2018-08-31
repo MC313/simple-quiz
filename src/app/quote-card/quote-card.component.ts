@@ -7,35 +7,23 @@ import {
   EventEmitter,
   Output,
   HostBinding,
+  HostListener,
   SimpleChanges
 } from '@angular/core';
-import {
-  trigger,
-  state,
-  style,
-  transition,
-  animate
-} from '@angular/animations';
 
 import { Quote } from '../Quote';
 import { AnswerValues } from '../AnswerValues';
 import { quoteCardAnimations } from './quote-card-animations';
 
-// type AnimationState = 'slideIn' | 'slideOut';
+type AnimationState = 'slideIn' | 'slideOut';
 
 @Component({
   selector: 'fn-quote-card',
   templateUrl: './quote-card.component.html',
   styleUrls: ['./quote-card.component.scss'],
-  animations: [
-    quoteCardAnimations.slideCardOut,
-    quoteCardAnimations.slideCardInOut,
-    quoteCardAnimations.slideCardUp
-  ]
+  animations: [quoteCardAnimations.slideCardInOut]
 })
 export class QuoteCardComponent implements OnInit, OnChanges, OnDestroy {
-  @HostBinding('@slideCardInOut')
-  animationState: 'slideIn' | 'slideOut' = 'slideIn';
   @Input()
   set answer(val: AnswerValues) {
     this.answerVal = val;
@@ -47,23 +35,23 @@ export class QuoteCardComponent implements OnInit, OnChanges, OnDestroy {
   @Output()
   newQuote: EventEmitter<boolean> = new EventEmitter();
   answerVal: any;
+  @HostBinding('@slideCardInOut')
+  animationState: AnimationState = 'slideIn';
+  @HostListener('@slideCardInOut.done', ['$event.target'])
+  animationDone(event) {
+    console.log('Animation DONE', event);
+  }
 
   constructor() {}
 
-  ngOnChanges(changes: SimpleChanges) {
-    console.log('Changes', changes);
-    if (changes.answer) {
-      this.answerVal = changes.answer.currentValue;
-      this._animateCardState(
-        changes.answer.currentValue,
-        changes.answer.previousValue
-      );
-    }
+  ngOnChanges(changes: SimpleChanges) {}
+
+  ngOnInit() {
+    console.log('running on init function');
   }
 
-  ngOnInit() {}
-
   sumbitAnswer(quoteId: string, answer: boolean) {
+    this.animationState = 'slideOut';
     const answerObj: object = {
       quoteId,
       answer
@@ -78,6 +66,7 @@ export class QuoteCardComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnDestroy() {
+    this.animationState = 'slideOut';
     console.log('Component being destroyed');
   }
 }

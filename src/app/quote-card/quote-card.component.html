@@ -1,15 +1,4 @@
 <section class="fn-card" *ngIf="quote; else loading">
-  <article class="fn-card__title">
-    Topic: {{quote.tags[0]}}
-  </article>
-  <div class="fn-card__content">
-    {{quote.text}}
-  </div>
-  <div class="fn-card__buttons">
-    <button class="button button--active" (click)="sumbitAnswer(quote._id, true)">Real News</button>
-    <button class="button" (click)="sumbitAnswer(quote._id, false)">Fake News</button>
-  </div>
-
   <!-- Answer Overlay -->
   <div class="card-overlay" [class.correct-overlay]="answerVal === 'CORRECT'" [class.incorrect-overlay]="answerVal === 'INCORRECT'">
     <span class="card-overlay__hide" aria-label="close overlay" (click)="answerVal = null">&times;</span>
@@ -20,6 +9,16 @@
         <a *ngIf="quote.source" href={{quote.source}}>{{quote.source}}</a>
       </p>
     </article>
+  </div>
+  <article class="fn-card__title">
+    Topic: {{quote.tags[0]}}
+  </article>
+  <div class="fn-card__content">
+    {{quote.text}}
+  </div>
+  <div class="fn-card__buttons">
+    <button class="button button--active" (click)="sumbitAnswer(quote._id, true)">Real News</button>
+    <button class="button" (click)="sumbitAnswer(quote._id, false)">Fake News</button>
   </div>
 </section>
 

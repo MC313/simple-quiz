@@ -11,6 +11,7 @@ import { TopicsComponent } from './topics/topics.component';
   declarations: [AppComponent, QuoteCardComponent, TopicsComponent],
   imports: [BrowserModule, BrowserAnimationsModule, HttpClientModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [QuoteCardComponent]
 })
 export class AppModule {}
