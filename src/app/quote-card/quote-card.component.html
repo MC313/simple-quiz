@@ -1,24 +1,36 @@
 <section class="fn-card" *ngIf="quote; else loading">
   <!-- Answer Overlay -->
-  <div class="card-overlay" [class.correct-overlay]="answerVal === 'CORRECT'" [class.incorrect-overlay]="answerVal === 'INCORRECT'">
-    <span class="card-overlay__hide" aria-label="close overlay" (click)="answerVal = null">&times;</span>
+  <div class="card-overlay" [@toggleOverlay]="answer ? 'show' : 'hide'"
+    (@toggleOverlay.done)="onOverlayComplete($event)" [style.backgroundColor]="answer === 'CORRECT' ? 'green' : 'red'">
+    
+    <span class="card-overlay__hide" aria-label="close overlay" (click)="answer = null">&times;</span>
+    
     <article class="card-overlay__content">
-      <i class="material-icons">{{answerVal === 'CORRECT' ? 'check_circle_outline' : 'highlight_off'}}</i>
-      <h3>{{answerVal === 'CORRECT' ? 'Correct Answer' : 'Incorrect Answer'}}</h3>
+      <i class="material-icons">{{answer === 'CORRECT' ? 'check_circle_outline' : 'highlight_off'}}</i>
+      <h3>{{answer === 'CORRECT' ? 'Correct Answer' : 'Incorrect Answer'}}</h3>
       <p>Source:
         <a *ngIf="quote.source" href={{quote.source}}>{{quote.source}}</a>
       </p>
     </article>
   </div>
+
+  <!-- Card Content -->
   <article class="fn-card__title">
     Topic: {{quote.tags[0]}}
   </article>
+
   <div class="fn-card__content">
     {{quote.text}}
   </div>
+
   <div class="fn-card__buttons">
-    <button class="button button--active" (click)="sumbitAnswer(quote._id, true)">Real News</button>
-    <button class="button" (click)="sumbitAnswer(quote._id, false)">Fake News</button>
+    <button class="button button--active" (click)="sumbitAnswer(quote._id, true)" [disabled]="disableBtn">
+      Real News
+    </button>
+
+    <button class="button" (click)="sumbitAnswer(quote._id, false)" [disabled]="disableBtn">
+      Fake News
+    </button>
   </div>
 </section>
 
@@ -29,6 +41,7 @@
       Topic:
       <span class="skeleton__title"></span>
     </article>
+
     <div class="fn-card__content">
       <span class="skeleton__content"></span>
       <span class="skeleton__content"></span>
@@ -36,6 +49,7 @@
       <span class="skeleton__content"></span>
       <span class="skeleton"></span>
     </div>
+
     <div class="fn-card__buttons">
       <button class="button button--active">Real News</button>
       <button class="button">Fake News</button>

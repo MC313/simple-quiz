@@ -68,6 +68,7 @@
       margin-top: 12px;
     }
     &:hover {
+      cursor: pointer;
       color: #ffffff;
       background-color: $primary;
     }
@@ -114,20 +115,8 @@
   top: 0;
   left: 0;
   opacity: 0.92;
-  transform: translateY(-100%);
   border-radius: $card-border-radius;
   color: #ffffff;
-  transition: all 0.4s linear;
-
-  &.correct-overlay {
-    transform: translateY(0%);
-    background-color: green;
-  }
-
-  &.incorrect-overlay {
-    transform: translateY(0%);
-    background-color: red;
-  }
 
   &__hide {
     position: absolute;

@@ -1,45 +1,25 @@
 import {
   animate,
+  AnimationTriggerMetadata,
   state,
   style,
   transition,
-  trigger,
-  keyframes,
-  AnimationTriggerMetadata,
-  query,
-  animateChild
+  trigger
 } from '@angular/animations';
 
 export const quoteCardAnimations: {
-  readonly slideCardInOut: AnimationTriggerMetadata;                                                              
+  readonly toggleOverlay: AnimationTriggerMetadata;
 } = {
-  slideCardInOut: trigger('slideCardInOut', [
-    state('slideIn', style({ transform: 'translateX(0)' })),
-    transition('void => *', [
-      style({ transform: 'translateX(-100%)' }),
-      animate('700ms ease')
+  toggleOverlay: trigger('toggleOverlay', [
+    state('show', style({ transform: 'translateY(0%)' })),
+    state('hide', style({ transform: 'translateY(-100%)' })),
+    transition('hide => show', [
+      animate('800ms ease-in')
     ]),
-    transition('* => void', [
-      animate(
-        '200ms ease',
-        keyframes([
-          style({ transform: 'translateX(0%)' }),
-          style({ transform: 'translateX(150%)' })
-        ])
-      )
+    transition('show => hide', [
+      animate('300ms ease-out')
     ])
   ])
-
-  // slideCardInOut: trigger('slideCardInOut', [
-  //   state('slideIn', style({ transform: 'translateX(0%)' })),
-  //   state('slideOut', style({ transform: 'translateX(100%)' })),
-  //   transition('* => slideIn', [
-  //     style({ transform: 'translateX(0%)' }),
-  //     animate('800ms ease-in')
-  //   ]),
-  //   transition('* => slideOut', [
-  //     style({ transform: 'translateX(100%)' }),
-  //     animate('300ms ease-out')
-  //   ])
-  // ]),
 };
+
+

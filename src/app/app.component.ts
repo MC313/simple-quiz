@@ -10,7 +10,6 @@ import { HttpErrorResponse } from '@angular/common/http';
 
 import { QuoteService } from './services/quote.service';
 import { TopicsService } from './services/topics.service';
-import { QuoteCardComponent } from './quote-card/quote-card.component';
 import { Quote } from './Quote';
 import { Answer } from './Answer';
 import { AnswerValues } from './AnswerValues';
@@ -21,19 +20,15 @@ import { AnswerValues } from './AnswerValues';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  @ViewChild('quoteCardContainer', { read: ViewContainerRef })
-  entry: ViewContainerRef;
-  answerVal: AnswerValues;
-  componentRef: any;
+  answer: AnswerValues;
   quote: Quote;
   topics: string[];
   topicsBool: boolean = false;
 
   constructor(
     private quoteService: QuoteService,
-    private resolver: ComponentFactoryResolver,
     private topicsService: TopicsService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.getQuote();
@@ -42,11 +37,8 @@ export class AppComponent implements OnInit {
 
   getQuote() {
     this.quoteService.getQuote().subscribe(
-      (quote) => {
-        this.quote = quote;
-        this._createComponent(this.quote);
-      },
-      (error: HttpErrorResponse) => console.error(error.message)
+      (quote) => this.quote = quote,
+      (error: HttpErrorResponse) => console.error(error.message),
     );
   }
 
@@ -72,23 +64,20 @@ export class AppComponent implements OnInit {
     this.quoteService
       .answer(event.quoteId, event.answer)
       .subscribe(
-        (answerRes: Answer) => (this.answerVal = answerRes.answer),
+        ({ answer }: Answer) => (this.answer = answer),
         (error: HttpErrorResponse) => console.error(error.message)
       );
   }
 
+  resetCard() {
+    this.answer = null;
+    this.quote = null;
+    setTimeout(() => {
+      this.getQuote();
+    }, 6000);
+  }
+
   toggleTopics() {
     this.topicsBool = !this.topicsBool;
-  }
-
-  destroyComp() {
-    this.componentRef.destroy();
-  }
-
-  private _createComponent(quote: Quote) {
-    this.entry.clear();
-    const factory = this.resolver.resolveComponentFactory(QuoteCardComponent);
-    this.componentRef = this.entry.createComponent(factory);
-    this.componentRef.instance.quote = quote;
   }
 }

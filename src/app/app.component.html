@@ -1,14 +1,4 @@
-<header class="header">
-  <button class="button--topics" (click)="toggleTopics()">Topics</button>
-  <button (click)="getQuote()">Create Comp</button>
-  <button (click)="destroyComp()">Destroy Comp</button>
-</header>
-<div class="topics-container" [class.show-topics]="topicsBool" [class.hide-topics]="!topicsBool">
-  <div class="topic" *ngFor="let topic of topics" (click)="getQuoteByTopic(topic.name)">
-    <p>{{topic.name}}</p>
-  </div>
-</div>
 <main class="main">
-  <ng-template #quoteCardContainer></ng-template>
-  <!-- <fn-quote-card [quote]="quote" [answer]="answerVal" (answered)="onSubmit($event)"></fn-quote-card> -->
+  <fn-quote-card [quote]="quote" [answer]="answer" (showingOverlay)="resetCard()" (answered)="onSubmit($event)">
+  </fn-quote-card>
 </main>

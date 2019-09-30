@@ -15,58 +15,48 @@ import { Quote } from '../Quote';
 import { AnswerValues } from '../AnswerValues';
 import { quoteCardAnimations } from './quote-card-animations';
 
-type AnimationState = 'slideIn' | 'slideOut';
-
 @Component({
   selector: 'fn-quote-card',
   templateUrl: './quote-card.component.html',
   styleUrls: ['./quote-card.component.scss'],
-  animations: [quoteCardAnimations.slideCardInOut]
+  animations: [quoteCardAnimations.toggleOverlay]
 })
-export class QuoteCardComponent implements OnInit, OnChanges, OnDestroy {
+export class QuoteCardComponent implements OnChanges, OnDestroy {
+  answerVal: AnswerValues | null = null;
+  disableBtn: boolean = false;
+
   @Input()
   set answer(val: AnswerValues) {
     this.answerVal = val;
   }
-  @Input()
-  quote: Quote;
-  @Output()
-  answered: EventEmitter<object> = new EventEmitter();
-  @Output()
-  newQuote: EventEmitter<boolean> = new EventEmitter();
-  answerVal: any;
-  @HostBinding('@slideCardInOut')
-  animationState: AnimationState = 'slideIn';
-  @HostListener('@slideCardInOut.done', ['$event.target'])
-  animationDone(event) {
-    console.log('Animation DONE', event);
+
+  get answer(): AnswerValues {
+    return this.answerVal;
   }
 
-  constructor() {}
+  @Input() quote: Quote;
+  @Output() answered: EventEmitter<object> = new EventEmitter();
+  @Output() showingOverlay = new EventEmitter();
 
-  ngOnChanges(changes: SimpleChanges) {}
+  constructor() { }
 
-  ngOnInit() {
-    console.log('running on init function');
-  }
-
-  sumbitAnswer(quoteId: string, answer: boolean) {
-    this.animationState = 'slideOut';
-    const answerObj: object = {
-      quoteId,
-      answer
-    };
-    this.answered.emit(answerObj);
-  }
-
-  private _animateCardState(currentCardVal, previousCardVal) {
-    if (currentCardVal !== previousCardVal) {
-      this.animationState = 'slideIn';
+  ngOnChanges({ quote }: SimpleChanges) {
+    console.log('change', quote)
+    const { previousValue, currentValue } = quote;
+    if (previousValue || currentValue['quoteId'] !== previousValue['quoteId']) {
+      this.disableBtn = false;
     }
   }
 
-  ngOnDestroy() {
-    this.animationState = 'slideOut';
-    console.log('Component being destroyed');
+  onOverlayComplete({ fromState }) {
+    if (fromState === 'void' || fromState === 'show') return;
+    this.showingOverlay.emit();
   }
+
+  sumbitAnswer(quoteId: string, answer: boolean) {
+    this.disableBtn = true;
+    this.answered.emit({ quoteId, answer });
+  }
+
+  ngOnDestroy() { }
 }
