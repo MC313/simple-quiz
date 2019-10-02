@@ -1,4 +1,8 @@
 <main class="main">
-  <fn-quote-card [quote]="quote" [answer]="answer" (showingOverlay)="resetCard()" (answered)="onSubmit($event)">
+  <fn-quote-card 
+    [quote]="quote" 
+    [correctAnswer]="answer" 
+    (showingOverlay)="resetCard()" 
+    (userAnswer)="onSubmit($event)">
   </fn-quote-card>
 </main>

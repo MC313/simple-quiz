@@ -1,37 +1,41 @@
 <section class="fn-card" *ngIf="quote; else loading">
   <!-- Answer Overlay -->
-  <div class="card-overlay" [@toggleOverlay]="answer ? 'show' : 'hide'"
-    (@toggleOverlay.done)="onOverlayComplete($event)" [style.backgroundColor]="answer === 'CORRECT' ? 'green' : 'red'">
-    
-    <span class="card-overlay__hide" aria-label="close overlay" (click)="answer = null">&times;</span>
-    
+  <div class="card-overlay" 
+    [@toggleOverlay]="toggleOverlay"
+    (@toggleOverlay.done)="onOverlayComplete($event)" 
+    [style.backgroundColor]="backgroundColor">
+
+    <span class="card-overlay__hide" aria-label="close overlay" 
+      (click)="toggleOverlay = 'hide'">
+      &times;
+    </span>
     <article class="card-overlay__content">
-      <i class="material-icons">{{answer === 'CORRECT' ? 'check_circle_outline' : 'highlight_off'}}</i>
-      <h3>{{answer === 'CORRECT' ? 'Correct Answer' : 'Incorrect Answer'}}</h3>
+      <i class="material-icons">{{ overlayIcon }}</i>
+      <h3>{{ overlayHeader }}</h3>
       <p>Source:
-        <a *ngIf="quote.source" href={{quote.source}}>{{quote.source}}</a>
+        <a *ngIf="quote.source" href={{quote.source}}>{{ quote.source }}</a>
       </p>
     </article>
   </div>
+  <!-- Answer Overlay End -->
 
   <!-- Card Content -->
   <article class="fn-card__title">
-    Topic: {{quote.tags[0]}}
+    Topic: {{ quote.tags[0] }}
   </article>
-
   <div class="fn-card__content">
-    {{quote.text}}
+    {{ quote.text }}
   </div>
-
   <div class="fn-card__buttons">
     <button class="button button--active" (click)="sumbitAnswer(quote._id, true)" [disabled]="disableBtn">
       Real News
     </button>
-
     <button class="button" (click)="sumbitAnswer(quote._id, false)" [disabled]="disableBtn">
       Fake News
     </button>
   </div>
+  <!-- Card Content End -->
+
 </section>
 
 <!-- Skeleton loading screen -->
@@ -56,3 +60,4 @@
     </div>
   </section>
 </ng-template>
+<!-- Skeleton loading screen end -->

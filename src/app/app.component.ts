@@ -70,9 +70,9 @@ export class AppComponent implements OnInit {
   }
 
   resetCard() {
-    this.answer = null;
     this.quote = null;
     setTimeout(() => {
+      //this.answer = null;
       this.getQuote();
     }, 6000);
   }
