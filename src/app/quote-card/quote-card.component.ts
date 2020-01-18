@@ -24,7 +24,7 @@ type UserAnswer = { quoteId: number, answer: boolean };
   animations: [quoteCardAnimations.toggleOverlay]
 })
 
-export class QuoteCardComponent implements OnChanges, OnDestroy {
+export class QuoteCardComponent implements OnChanges {
   answerVal: AnswerValues | null = null;
   backgroundColor: 'green' | 'red';
   disableBtn: boolean = false;
@@ -71,7 +71,7 @@ export class QuoteCardComponent implements OnChanges, OnDestroy {
     this.backgroundColor = answer === 'CORRECT' ? 'green' : 'red';
   }
 
-  sumbitAnswer(quoteId: string, answer: boolean) {
+  sumbitAnswer(quoteId: number, answer: boolean) {
     //this.disableBtn = true;
     this.userAnswer.emit({ quoteId, answer });
   }
