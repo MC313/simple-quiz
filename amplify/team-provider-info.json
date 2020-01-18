@@ -1,0 +1,20 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-fakesnewsquizapp-dev-123004-authRole",
+            "UnauthRoleArn": "arn:aws:iam::420408896210:role/amplify-fakesnewsquizapp-dev-123004-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::420408896210:role/amplify-fakesnewsquizapp-dev-123004-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-fakesnewsquizapp-dev-123004-deployment",
+            "UnauthRoleName": "amplify-fakesnewsquizapp-dev-123004-unauthRole",
+            "StackName": "amplify-fakesnewsquizapp-dev-123004",
+            "StackId": "arn:aws:cloudformation:us-east-1:420408896210:stack/amplify-fakesnewsquizapp-dev-123004/2cd5b2d0-3a18-11ea-b873-12f08cf73b28",
+            "AmplifyAppId": "d17epkhoc48bv9"
+        },
+        "categories": {
+            "auth": {
+                "cognitoe37edc70": {}
+            }
+        }
+    }
+}

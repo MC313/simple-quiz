@@ -1,0 +1,5 @@
+{
+    "tableName": "QuizItemTable",
+    "partitionKeyName": "quizItemId",
+    "partitionKeyType": "S"
+}

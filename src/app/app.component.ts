@@ -1,11 +1,4 @@
-import {
-  Component,
-  ComponentFactoryResolver,
-  ComponentRef,
-  ViewChild,
-  ViewContainerRef,
-  OnInit
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 
 import { QuoteService } from './services/quote.service';
