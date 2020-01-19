@@ -1,4 +1,4 @@
-<section class="fn-card" *ngIf="quote; else loading">
+<section class="fn-card" *ngIf="quizItem; else loading">
   <!-- Answer Overlay -->
   <div class="card-overlay" 
     [@toggleOverlay]="toggleOverlay"
@@ -13,7 +13,7 @@
       <i class="material-icons">{{ overlayIcon }}</i>
       <h3>{{ overlayHeader }}</h3>
       <p>Source:
-        <a *ngIf="quote.source" href={{quote.source}}>{{ quote.source }}</a>
+        <a *ngIf="quizItem.source" href={{quizItem.source}}>{{ quizItem.source }}</a>
       </p>
     </article>
   </div>
@@ -21,16 +21,16 @@
 
   <!-- Card Content -->
   <article class="fn-card__title">
-    Topic: {{ quote.tags[0] }}
+    Topic: {{ quizItem.tags[0] }}
   </article>
   <div class="fn-card__content">
-    {{ quote.text }}
+    {{ quizItem.quizItemText }}
   </div>
   <div class="fn-card__buttons">
-    <button class="button button--active" (click)="sumbitAnswer(quote._id, true)" [disabled]="disableBtn">
+    <button class="button button--active" (click)="sumbitAnswer(quizItem.quizItemId, true)" [disabled]="disableBtn">
       Real News
     </button>
-    <button class="button" (click)="sumbitAnswer(quote._id, false)" [disabled]="disableBtn">
+    <button class="button" (click)="sumbitAnswer(quizItem.quizItemId, false)" [disabled]="disableBtn">
       Fake News
     </button>
   </div>

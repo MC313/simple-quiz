@@ -11,11 +11,11 @@ import {
   SimpleChanges
 } from '@angular/core';
 
-import { Quote } from '../Quote';
+import { QuizItem } from '../QuizItem';
 import { AnswerValues } from '../AnswerValues';
 import { quoteCardAnimations } from './quote-card-animations';
 
-type UserAnswer = { quoteId: number, answer: boolean };
+type UserAnswer = { quizItemId: string, answer: boolean };
 
 @Component({
   selector: 'fn-quote-card',
@@ -33,7 +33,7 @@ export class QuoteCardComponent implements OnChanges {
   toggleOverlay: 'hide' | 'show' = 'hide';
 
   @Input() correctAnswer: AnswerValues;
-  @Input() quote: Quote;
+  @Input() quizItem: QuizItem;
   @Output() userAnswer: EventEmitter<UserAnswer> = new EventEmitter();
   @Output() showingOverlay = new EventEmitter();
 
@@ -44,7 +44,7 @@ export class QuoteCardComponent implements OnChanges {
     this.handleAnswerChanges(correctAnswer);
   }
 
-  handleAnswerChanges({ currentValue }: { currentValue: AnswerValues }) {
+  handleAnswerChanges({ currentValue = null }: { currentValue: AnswerValues }) {
     this.setOverlayValue(currentValue);
     this.setOverlayHeaderValue(currentValue);
     this.setOverlayIconValue(currentValue);
@@ -71,9 +71,9 @@ export class QuoteCardComponent implements OnChanges {
     this.backgroundColor = answer === 'CORRECT' ? 'green' : 'red';
   }
 
-  sumbitAnswer(quoteId: number, answer: boolean) {
+  sumbitAnswer(quizItemId: string, answer: boolean) {
     //this.disableBtn = true;
-    this.userAnswer.emit({ quoteId, answer });
+    this.userAnswer.emit({ quizItemId, answer });
   }
 
   onOverlayComplete({ fromState }) {

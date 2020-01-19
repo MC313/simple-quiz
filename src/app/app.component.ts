@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 
-import { QuoteService } from './services/quote.service';
-import { TopicsService } from './services/topics.service';
-import { Quote } from './Quote';
+import API from '@aws-amplify/api';
+
+import { QuizItem } from './QuizItem';
 import { Answer } from './Answer';
 import { AnswerValues } from './AnswerValues';
 
@@ -14,63 +14,42 @@ import { AnswerValues } from './AnswerValues';
 })
 export class AppComponent implements OnInit {
   answer: AnswerValues;
-  quote: Quote;
+  quizItem: QuizItem;
   topics: string[];
   topicsBool: boolean = false;
 
-  constructor(
-    private quoteService: QuoteService,
-    private topicsService: TopicsService
-  ) { }
+  constructor() { }
 
   ngOnInit() {
-    this.getQuote();
-    this.getTopics();
+    this.getQuizItem();
   }
 
-  getQuote() {
-    this.quoteService.getQuote().subscribe(
-      (quote) => this.quote = quote,
-      (error: HttpErrorResponse) => console.error(error.message),
-    );
+ getQuizItem() {
+    API.get("QuizGameAPI", "/quizitem", {})
+    	.then(({ body: quizItem }) => this.quizItem = quizItem)
+    	.catch((error) => console.error("Error getting quote", error));
   }
 
-  getTopics() {
-    this.topicsService
-      .getTopics()
-      .subscribe(
-        (topics: string[]) => (this.topics = topics),
-        (error: HttpErrorResponse) => console.error(error.message)
-      );
-  }
-
-  getQuoteByTopic(topic: string) {
+/*
+  onSubmit({ quizItemId, answer }) {
     this.quoteService
-      .getQuote(topic)
-      .subscribe(
-        (quote: Quote) => (this.quote = quote),
-        (error: HttpErrorResponse) => console.error(error.message)
-      );
-  }
-
-  onSubmit(event) {
-    this.quoteService
-      .answer(event.quoteId, event.answer)
+      .answer(quizItemId, answer)
       .subscribe(
         ({ answer }: Answer) => (this.answer = answer),
         (error: HttpErrorResponse) => console.error(error.message)
       );
   }
+*/
 
   resetCard() {
-    this.quote = null;
+    this.quizItem = null;
     setTimeout(() => {
       //this.answer = null;
-      this.getQuote();
+      this.getQuizItem();
     }, 6000);
   }
 
-  toggleTopics() {
-    this.topicsBool = !this.topicsBool;
-  }
+
+
+
 }
