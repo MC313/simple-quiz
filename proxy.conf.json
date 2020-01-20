@@ -1,0 +1,7 @@
+{
+  "/api": {
+    "target": "https://ov0tu4oga6.execute-api.us-east-1.amazonaws.com/dev/quizitem",
+    "secure": false,
+    "changeOrigin": true
+  }
+}

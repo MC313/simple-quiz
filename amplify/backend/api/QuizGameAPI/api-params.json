@@ -4,13 +4,7 @@
             "name": "/quizitem",
             "lambdaFunction": "QuizItemLambda",
             "privacy": {
-                "protected": true,
-                "auth": [
-                    "/GET"
-                ],
-                "unauth": [
-                    "/GET"
-                ]
+                "open": true
             }
         }
     ],
@@ -22,8 +16,8 @@
         }
     ],
     "privacy": {
-        "auth": 1,
-        "unauth": 1,
+        "auth": 0,
+        "unauth": 0,
         "authRoleName": "amplify-fakesnewsquizapp-dev-123004-authRole",
         "unAuthRoleName": "amplify-fakesnewsquizapp-dev-123004-unauthRole"
     },
@@ -36,5 +30,6 @@
                 "Arn"
             ]
         }
-    ]
+    ],
+    "uuid": "acf88aa2"
 }

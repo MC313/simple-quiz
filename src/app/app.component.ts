@@ -14,6 +14,7 @@ import { AnswerValues } from './AnswerValues';
 })
 export class AppComponent implements OnInit {
   answer: AnswerValues;
+  error: string = null;
   quizItem: QuizItem;
   topics: string[];
   topicsBool: boolean = false;
@@ -25,19 +26,25 @@ export class AppComponent implements OnInit {
   }
 
  getQuizItem() {
-    API.get("QuizGameAPI", "/quizitem", {})
+  	const headers = {"Access-Control-Allow-Origin": "*"};
+    API.get("QuizGameAPI", "/quizitem", { headers })
     	.then(({ body: quizItem }) => this.quizItem = quizItem)
-    	.catch((error) => console.error("Error getting quote", error));
+    	.catch(({ message }: HttpErrorResponse) => {
+        	console.error("Error getting quiz item. Error:", message);
+        	this.error = "An error has occured please reload the page and try again.";
+	    });
   }
 
 /*
   onSubmit({ quizItemId, answer }) {
-    this.quoteService
-      .answer(quizItemId, answer)
-      .subscribe(
-        ({ answer }: Answer) => (this.answer = answer),
-        (error: HttpErrorResponse) => console.error(error.message)
-      );
+  	const body = { quizItemId, answer };
+  	const headers = { "access-control-allow-origin": "*" };
+    API.post("QuizGameAPI", "/quizitem", { body, headers })
+      .then({ body: answer }: Answer) => this.answer = answer)
+      .catch(({ message }: HttpErrorResponse) => {
+        	console.error("Error submitting answer. Error:", message);
+        	this.error = "An error has occured please reload the page and try again.";
+	   });
   }
 */
 
@@ -49,7 +56,11 @@ export class AppComponent implements OnInit {
     }, 6000);
   }
 
-
-
+/*
+  function handleError({ message }: HttpErrorResponse) {
+  	console.error(`${userText}. Error: ${message}`);
+  	this.error = "An error has occured please reload the page and try again.";
+  };
+*/
 
 }

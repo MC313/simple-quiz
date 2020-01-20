@@ -6,3 +6,6 @@
     (userAnswer)="onSubmit($event)">
   </fn-quote-card>
 </main>
+<footer class="error-container">
+  <p *ngIf="error" class="error">{{error}}</p>
+</footer>
