@@ -39,7 +39,8 @@ app.use(awsServerlessExpressMiddleware.eventContext());
 // Enable CORS for all methods
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, access-control-allow-origin, authorization, x-amz-date, x-amz-security-token");
+  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, HEAD");
   next();
 });
 
@@ -65,7 +66,7 @@ app.get(path, async (req, res) => {
   let params = {
     TableName: tableName,
     Key: {
-      quizItemId: null
+      [partitionKeyName]: null
     },
   };
   
@@ -78,44 +79,38 @@ app.get(path, async (req, res) => {
     const { Items } = await dynamodb.scan(itemsCountParams).promise();
     const randomIndex = getRandomNumber(0, Items.length);
     const randomItemId = Items[randomIndex].quizItemId;
-    params.Key.quizItemId = randomItemId;
+    params.Key[partitionKeyName] = randomItemId;
     const { Item } = await dynamodb.get(params).promise();
     res.statusCode = 200;
     res.json({ body: Item });
   } catch (error) {
 	res.statusCode = 500;
-  	res.json({ error: 'Error getting quiz item: ' + error });
+  	res.json({ error });
   }
 });
 
-/************************************
-* HTTP post method for insert object *
-*************************************/
-
-app.post(path, function (req, res) {
-/*
-  if (userIdPresent) {
-    req.body['userId'] = req.apiGateway.event.requestContext.identity.cognitoIdentityId || UNAUTH;
-  }
-*/
-  const { quizItemId, answer } req.body;
+app.post(path, async (req, res) => {
+  const { answer, quizItemId } = req.body;
   
-  let params = {
+  const params = {
     TableName: tableName,
     Key: {
-      quizItemId
-    },
-    AttributesToGet: ["isRealQuote"]
+      [partitionKeyName]: quizItemId
+    }
   };
   
   try {
     const { Item } = await dynamodb.get(params).promise();
-    const isCorrectAnswer = (Item.isRealQuote === answer);
+    const answerObj = { 
+	  isRealQuote: Item.isRealQuote,
+	  isCorrectAnswer: Item.isRealQuote === answer,
+	  source: Item.source
+	};
     res.statusCode = 200;
-    res.json({ body: isCorrectAnswer });
+    res.json({ body: answerObj });
   } catch (error) {
 	res.statusCode = 500;
-  	res.json({ error: 'Error getting quiz item: ' + error });
+  	res.json({ error });
   }
 });
 

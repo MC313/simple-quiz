@@ -39,12 +39,12 @@ export class QuoteCardComponent implements OnChanges {
 
   constructor() { }
 
-  ngOnChanges(changes: SimpleChanges) {
-    const { correctAnswer , quote } = changes;
-    this.handleAnswerChanges(correctAnswer);
+  ngOnChanges({ currentValue, firstChange }: SimpleChanges) {
+  	if(firstChange) return;
+    this.handleAnswerChanges(currentValue);
   }
 
-  handleAnswerChanges({ currentValue = null }: { currentValue: AnswerValues }) {
+  handleAnswerChanges(currentValue) {
     this.setOverlayValue(currentValue);
     this.setOverlayHeaderValue(currentValue);
     this.setOverlayIconValue(currentValue);

@@ -26,8 +26,7 @@ export class AppComponent implements OnInit {
   }
 
  getQuizItem() {
-  	const headers = {"Access-Control-Allow-Origin": "*"};
-    API.get("QuizGameAPI", "/quizitem", { headers })
+    API.get("QuizGameAPI", "/quizitem", {})
     	.then(({ body: quizItem }) => this.quizItem = quizItem)
     	.catch(({ message }: HttpErrorResponse) => {
         	console.error("Error getting quiz item. Error:", message);
@@ -35,18 +34,17 @@ export class AppComponent implements OnInit {
 	    });
   }
 
-/*
+
   onSubmit({ quizItemId, answer }) {
   	const body = { quizItemId, answer };
-  	const headers = { "access-control-allow-origin": "*" };
-    API.post("QuizGameAPI", "/quizitem", { body, headers })
-      .then({ body: answer }: Answer) => this.answer = answer)
+    API.post("QuizGameAPI", "/quizitem", { body })
+      .then(({ body: answer }) => this.answer = answer)
       .catch(({ message }: HttpErrorResponse) => {
         	console.error("Error submitting answer. Error:", message);
         	this.error = "An error has occured please reload the page and try again.";
 	   });
   }
-*/
+
 
   resetCard() {
     this.quizItem = null;
