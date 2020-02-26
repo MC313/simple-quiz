@@ -13,7 +13,7 @@ import { AnswerValues } from './AnswerValues';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  answer: AnswerValues;
+  answer: boolean;
   error: string = null;
   quizItem: QuizItem;
   topics: string[];
@@ -38,7 +38,7 @@ export class AppComponent implements OnInit {
   onSubmit({ quizItemId, answer }) {
   	const body = { quizItemId, answer };
     API.post("QuizGameAPI", "/quizitem", { body })
-      .then(({ body: answer }) => this.answer = answer)
+      .then(({ body }) => this.answer = body.isCorrectAnswer)
       .catch(({ message }: HttpErrorResponse) => {
         	console.error("Error submitting answer. Error:", message);
         	this.error = "An error has occured please reload the page and try again.";

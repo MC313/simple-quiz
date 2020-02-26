@@ -32,7 +32,7 @@ export class QuoteCardComponent implements OnChanges {
   overlayIcon: 'check_circle_outline' | 'highlight_off';
   toggleOverlay: 'hide' | 'show' = 'hide';
 
-  @Input() correctAnswer: AnswerValues;
+  @Input() correctAnswer: boolean;
   @Input() quizItem: QuizItem;
   @Output() userAnswer: EventEmitter<UserAnswer> = new EventEmitter();
   @Output() showingOverlay = new EventEmitter();
@@ -41,34 +41,35 @@ export class QuoteCardComponent implements OnChanges {
 
   ngOnChanges({ currentValue, firstChange }: SimpleChanges) {
   	if(firstChange) return;
-    this.handleAnswerChanges(currentValue);
+  	console.log("CUrrent", currentValue)
+    this.handleAnswerChanges(this.correctAnswer);
   }
 
-  handleAnswerChanges(currentValue) {
-    this.setOverlayValue(currentValue);
-    this.setOverlayHeaderValue(currentValue);
-    this.setOverlayIconValue(currentValue);
-    this.setOverlayBackground(currentValue);
+  handleAnswerChanges(correctAnswer: boolean) {
+    this.setOverlayValue(correctAnswer);
+    this.setOverlayHeaderValue(correctAnswer);
+    this.setOverlayIconValue(correctAnswer);
+    this.setOverlayBackground(correctAnswer);
   }
 
-  setOverlayValue(answer: AnswerValues) {
-    this.toggleOverlay = answer ? 'show' : 'hide';
+  setOverlayValue(correctAnswer: boolean) {
+    this.toggleOverlay = correctAnswer ? 'show' : 'hide';
   }
 
-  setOverlayHeaderValue(answer: AnswerValues) {
-    if (answer === 'INCORRECT') {
-      this.overlayHeader = 'Incorrect Answer';
-    } else {
+  setOverlayHeaderValue(correctAnswer: boolean) {
+    if (correctAnswer) {
       this.overlayHeader = 'Correct Answer';
+    } else {
+      this.overlayHeader = 'Incorrect Answer';
     };
   }
 
-  setOverlayIconValue(answer: AnswerValues) {
-    this.overlayIcon = answer === 'CORRECT' ? 'check_circle_outline' : 'highlight_off';
+  setOverlayIconValue(correctAnswer: boolean) {
+    this.overlayIcon = correctAnswer ? 'check_circle_outline' : 'highlight_off';
   }
 
-  setOverlayBackground(answer: AnswerValues) {
-    this.backgroundColor = answer === 'CORRECT' ? 'green' : 'red';
+  setOverlayBackground(correctAnswer: boolean) {
+    this.backgroundColor = correctAnswer ? 'green' : 'red';
   }
 
   sumbitAnswer(quizItemId: string, answer: boolean) {
@@ -78,7 +79,7 @@ export class QuoteCardComponent implements OnChanges {
 
   onOverlayComplete({ fromState }) {
     if (fromState === 'void' || fromState === 'show') return;
-    this.showingOverlay.emit();
+    //this.showingOverlay.emit();
   }
 
 }

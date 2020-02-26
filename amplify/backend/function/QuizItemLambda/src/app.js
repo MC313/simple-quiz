@@ -60,16 +60,16 @@ const convertUrlType = (param, type) => {
 
 app.get(path, async (req, res) => {
   const itemsCountParams = {
-  	TableName: tableName
+    TableName: tableName
   };
-  
+
   let params = {
     TableName: tableName,
     Key: {
       [partitionKeyName]: null
     },
   };
-  
+
   const getRandomNumber = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   };
@@ -84,33 +84,39 @@ app.get(path, async (req, res) => {
     res.statusCode = 200;
     res.json({ body: Item });
   } catch (error) {
-	res.statusCode = 500;
-  	res.json({ error });
+    res.statusCode = 500;
+    res.json({ error });
   }
 });
 
 app.post(path, async (req, res) => {
   const { answer, quizItemId } = req.body;
   
+  if ((!answer && answer !== false) || !quizItemId) {
+    res.statusCode = 400;
+    return res.json({ code: "Invalid Parameter", message: "Invalid parameters submitted" });
+  };
+
   const params = {
     TableName: tableName,
     Key: {
       [partitionKeyName]: quizItemId
     }
   };
-  
+
   try {
     const { Item } = await dynamodb.get(params).promise();
-    const answerObj = { 
-	  isRealQuote: Item.isRealQuote,
-	  isCorrectAnswer: Item.isRealQuote === answer,
-	  source: Item.source
-	};
+    const answerObj = {
+      isRealQuote: Item.isRealQuote,
+      isCorrectAnswer: Item.isRealQuote === answer,
+      source: Item.source
+    };
     res.statusCode = 200;
     res.json({ body: answerObj });
   } catch (error) {
-	res.statusCode = 500;
-  	res.json({ error });
+    console.log("Error submitting answer", error);
+    res.statusCode = 500;
+    res.json({ error });
   }
 });
 
