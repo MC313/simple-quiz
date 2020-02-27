@@ -14,10 +14,10 @@ export const quoteCardAnimations: {
     state('show', style({ transform: 'translateY(0%)' })),
     state('hide', style({ transform: 'translateY(-100%)' })),
     transition('hide => show', [
-      animate('450ms ease-in')
+      animate('400ms ease-in')
     ]),
     transition('show => hide', [
-      animate('450ms ease-out')
+      animate('400ms ease-out')
     ])
   ])
 };

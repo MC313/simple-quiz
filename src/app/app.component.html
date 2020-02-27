@@ -2,7 +2,7 @@
   <fn-quote-card 
     [quizItem]="quizItem" 
     [correctAnswer]="answer" 
-    (showingOverlay)="resetCard()" 
+    (closingOverlay)="resetCard()" 
     (userAnswer)="onSubmit($event)">
   </fn-quote-card>
 </main>

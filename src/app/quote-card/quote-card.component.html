@@ -1,12 +1,12 @@
 <section class="fn-card" *ngIf="quizItem; else loading">
   <!-- Answer Overlay -->
   <div class="card-overlay" 
-    [@toggleOverlay]="toggleOverlay"
-    (@toggleOverlay.done)="onOverlayComplete($event)" 
+    [@toggleOverlay]="overlayState"
+    (@toggleOverlay.done)="onClosingOverlay($event)" 
     [style.backgroundColor]="backgroundColor">
 
     <span class="card-overlay__hide" aria-label="close overlay" 
-      (click)="toggleOverlay = 'hide'">
+      (click)="onToggleOverlay()">
       &times;
     </span>
     <article class="card-overlay__content">

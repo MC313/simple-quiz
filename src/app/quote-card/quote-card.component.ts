@@ -30,30 +30,30 @@ export class QuoteCardComponent implements OnChanges {
   disableBtn: boolean = false;
   overlayHeader: 'Correct Answer' | 'Incorrect Answer';
   overlayIcon: 'check_circle_outline' | 'highlight_off';
-  toggleOverlay: 'hide' | 'show' = 'hide';
+  overlayState: 'hide' | 'show' = 'hide';
 
   @Input() correctAnswer: boolean;
   @Input() quizItem: QuizItem;
   @Output() userAnswer: EventEmitter<UserAnswer> = new EventEmitter();
-  @Output() showingOverlay = new EventEmitter();
+  @Output() closingOverlay = new EventEmitter();
 
   constructor() { }
 
   ngOnChanges({ currentValue, firstChange }: SimpleChanges) {
   	if(firstChange) return;
-  	console.log("CUrrent", currentValue)
+  	console.log("Correct Answer: ", this.correctAnswer)
     this.handleAnswerChanges(this.correctAnswer);
   }
 
   handleAnswerChanges(correctAnswer: boolean) {
-    this.setOverlayValue(correctAnswer);
+    this.onToggleOverlay();
     this.setOverlayHeaderValue(correctAnswer);
     this.setOverlayIconValue(correctAnswer);
     this.setOverlayBackground(correctAnswer);
   }
 
-  setOverlayValue(correctAnswer: boolean) {
-    this.toggleOverlay = correctAnswer ? 'show' : 'hide';
+  onToggleOverlay() {
+    this.overlayState = this.overlayState === 'hide' ? 'show' : 'hide';
   }
 
   setOverlayHeaderValue(correctAnswer: boolean) {
@@ -73,13 +73,15 @@ export class QuoteCardComponent implements OnChanges {
   }
 
   sumbitAnswer(quizItemId: string, answer: boolean) {
-    //this.disableBtn = true;
+    this.disableBtn = true;
     this.userAnswer.emit({ quizItemId, answer });
   }
 
-  onOverlayComplete({ fromState }) {
-    if (fromState === 'void' || fromState === 'show') return;
-    //this.showingOverlay.emit();
-  }
+  onClosingOverlay({ fromState, toState }) {
+    if (fromState === 'show' && toState === 'hide') {
+		this.disableBtn = false;
+		this.closingOverlay.emit();
+	};
+  };
 
 }
