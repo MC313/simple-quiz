@@ -39,9 +39,8 @@ export class QuoteCardComponent implements OnChanges {
 
   constructor() { }
 
-  ngOnChanges({ currentValue, firstChange }: SimpleChanges) {
-  	if(firstChange) return;
-  	console.log("Correct Answer: ", this.correctAnswer)
+  ngOnChanges({ firstChange }: SimpleChanges) {
+  	if (firstChange) return;
     this.handleAnswerChanges(this.correctAnswer);
   }
 
