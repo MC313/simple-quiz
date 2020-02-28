@@ -13,12 +13,14 @@ import API from '@aws-amplify/api';
 import { AppComponent } from './app.component';
 import { QuoteCardComponent } from './quote-card/quote-card.component';
 import { TopicsComponent } from './topics/topics.component';
+import { LoadingIconComponent } from './loading-icon/loading-icon.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     QuoteCardComponent,
-    TopicsComponent
+    TopicsComponent,
+    LoadingIconComponent
   ],
   imports: [
     AmplifyAngularModule,

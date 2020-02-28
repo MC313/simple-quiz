@@ -28,6 +28,8 @@ export class QuoteCardComponent implements OnChanges {
   answerVal: AnswerValues | null = null;
   backgroundColor: 'green' | 'red';
   disableBtn: boolean = false;
+  isRealBtnLoading: boolean = false;
+  isRealFakeLoading: boolean = false;
   overlayHeader: 'Correct Answer' | 'Incorrect Answer';
   overlayIcon: 'check_circle_outline' | 'highlight_off';
   overlayState: 'hide' | 'show' = 'hide';
@@ -45,6 +47,8 @@ export class QuoteCardComponent implements OnChanges {
   }
 
   handleAnswerChanges(correctAnswer: boolean) {
+    this.isRealBtnLoading = false;
+    this.isRealBtnLoading = false;
     this.onToggleOverlay();
     this.setOverlayHeaderValue(correctAnswer);
     this.setOverlayIconValue(correctAnswer);

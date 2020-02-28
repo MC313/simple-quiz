@@ -27,10 +27,10 @@
     {{ quizItem.quizItemText }}
   </div>
   <div class="fn-card__buttons">
-    <button class="button button--active" (click)="sumbitAnswer(quizItem.quizItemId, true)" [disabled]="disableBtn">
+    <button class="button button--active" (click)="sumbitAnswer(quizItem.quizItemId, true)[disabled]="disableBtn">
       Real News
     </button>
-    <button class="button" (click)="sumbitAnswer(quizItem.quizItemId, false)" [disabled]="disableBtn">
+    <button class="button" (click)="sumbitAnswer(quizItem.quizItemId, false) [disabled]="disableBtn">
       Fake News
     </button>
   </div>

@@ -31,7 +31,7 @@ export class AppComponent implements OnInit {
     	.catch(({ message }: HttpErrorResponse) => {
         	console.error("Error getting quiz item. Error:", message);
         	this.error = "An error has occured please reload the page and try again.";
-		setTimeout(() => { this.error = null }, 10000);   
+			setTimeout(() => { this.error = null }, 10000);   
 	 });
   }
 
