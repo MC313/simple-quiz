@@ -5,7 +5,7 @@
   height: 17px;
   display: block;
   border-radius: $card-border-radius;
-  background-color: darken(#a288a6, 7%);
+  background-color: lighten($secondary, 15%);
 }
 
 :host {
@@ -19,11 +19,11 @@
   margin: 0px 10px;
   padding: 30px;
   padding-bottom: 15px;
-  border: 1px solid lighten(#a288a6, 24%);
-  border-bottom-color: lighten(#a288a6, 18%);
+  border: 1px solid darken($stale-grey, 4%);
+  border-bottom-color: darken($stale-grey, 4%);
   border-radius: $card-border-radius;
   box-shadow: 5px 5px 25px 0 rgba(46, 61, 73, 0.3);
-  background-color: lighten(#a288a6, 28%);
+  background-color: $stale-grey;
   @media screen and (min-width: 481px) {
     padding-bottom: 15px;
   }
@@ -37,14 +37,14 @@
     display: flex;
     align-items: center;
     margin-bottom: 25px;
-    color: darken(#a288a6, 12%);
+    color: #000000;
   }
   .fn-card__content {
     min-height: 230px;
     margin-bottom: 40px;
     line-height: 1.5;
     overflow: auto;
-    color: $primary;
+    color: darken($primary, 8%);
   }
 }
 
@@ -54,14 +54,13 @@
   flex-direction: column;
   justify-content: center;
   .button {
-  	position: relative;
-    border: 2px solid $primary;
+    border: 2px solid lighten($primary, 8%);
     width: 100%;
     min-height: 40px;
     height: 40px;
     display: block;
     border-radius: $button-border-radius;
-    background-color: lighten($primary, 15%);
+    background-color: lighten($primary, 8%);
     color: #ffffff;
     transition: background-color 0.3s ease-in;
     &:first-of-type {
@@ -74,6 +73,7 @@
     &:hover {
       cursor: pointer;
       color: #ffffff;
+      border: 2px solid $primary;
       background-color: $primary;
     }
     .loading-icon {
@@ -144,5 +144,9 @@
     justify-content: center;
     align-items: center;
     margin: 0px 40px;
+  }
+
+  .source {
+    color: #ffffff;
   }
 }
