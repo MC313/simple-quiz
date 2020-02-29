@@ -5,7 +5,7 @@
   height: 17px;
   display: block;
   border-radius: $card-border-radius;
-  background-color: lighten($secondary, 15%);
+  background-color: lighten($secondary, 10%);
 }
 
 :host {
@@ -105,6 +105,7 @@
     @extend %skeleton-item;
     width: 40%;
     margin-left: 9px;
+    background-color: lighten($primary-text, 8%);
   }
   &__content {
     @extend %skeleton-item;
