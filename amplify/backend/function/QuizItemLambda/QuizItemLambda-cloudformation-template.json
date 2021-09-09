@@ -70,8 +70,8 @@
 				"Runtime": "nodejs10.x",
 				"Timeout": "25",
 				"Code": {
-					"S3Bucket": "amplify-fakesnewsquizapp-dev-123004-deployment",
-					"S3Key": "amplify-builds/QuizItemLambda-63534d5a553448706d51-build.zip"
+					"S3Bucket": "amplify-fakesnewsquizapp-main-05725-deployment",
+					"S3Key": "amplify-builds/QuizItemLambda-2f4b417a656d4e725954-build.zip"
 				}
 			}
 		},
