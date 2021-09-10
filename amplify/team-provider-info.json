@@ -1,41 +1,41 @@
 {
-	"dev": {
-		"awscloudformation": {
-			"AuthRoleName": "amplify-fakesnewsquizapp-dev-123004-authRole",
-			"UnauthRoleArn": "arn:aws:iam::420408896210:role/amplify-fakesnewsquizapp-dev-123004-unauthRole",
-			"AuthRoleArn": "arn:aws:iam::420408896210:role/amplify-fakesnewsquizapp-dev-123004-authRole",
-			"Region": "us-east-1",
-			"DeploymentBucketName": "amplify-fakesnewsquizapp-dev-123004-deployment",
-			"UnauthRoleName": "amplify-fakesnewsquizapp-dev-123004-unauthRole",
-			"StackName": "amplify-fakesnewsquizapp-dev-123004",
-			"StackId": "arn:aws:cloudformation:us-east-1:420408896210:stack/amplify-fakesnewsquizapp-dev-123004/2cd5b2d0-3a18-11ea-b873-12f08cf73b28",
-			"AmplifyAppId": "d17epkhoc48bv9"
-		},
-		"categories": {
-			"auth": {
-				"cognitoe37edc70": {}
-			}
-		}
-	},
-	"main": {
-		"awscloudformation": {
-			"AuthRoleName": "amplify-fakesnewsquizapp-main-05725-authRole",
-			"UnauthRoleArn": "arn:aws:iam::420408896210:role/amplify-fakesnewsquizapp-main-05725-unauthRole",
-			"AuthRoleArn": "arn:aws:iam::420408896210:role/amplify-fakesnewsquizapp-main-05725-authRole",
-			"Region": "us-east-1",
-			"DeploymentBucketName": "amplify-fakesnewsquizapp-main-05725-deployment",
-			"UnauthRoleName": "amplify-fakesnewsquizapp-main-05725-unauthRole",
-			"StackName": "amplify-fakesnewsquizapp-main-05725",
-			"StackId": "arn:aws:cloudformation:us-east-1:420408896210:stack/amplify-fakesnewsquizapp-main-05725/6d618910-112a-11ec-bfc6-0e9c0517557f",
-			"AmplifyAppId": "d22x2a4d5wtl14"
-		},
-		"categories": {
-			"auth": {
-				"cognitoe37edc70": {}
-			},
-			"function": {
-				"QuizItemLambda": {}
-			}
-		}
-	}
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-fakesnewsquizapp-dev-123004-authRole",
+      "UnauthRoleArn": "arn:aws:iam::420408896210:role/amplify-fakesnewsquizapp-dev-123004-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::420408896210:role/amplify-fakesnewsquizapp-dev-123004-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-fakesnewsquizapp-dev-123004-deployment",
+      "UnauthRoleName": "amplify-fakesnewsquizapp-dev-123004-unauthRole",
+      "StackName": "amplify-fakesnewsquizapp-dev-123004",
+      "StackId": "arn:aws:cloudformation:us-east-1:420408896210:stack/amplify-fakesnewsquizapp-dev-123004/2cd5b2d0-3a18-11ea-b873-12f08cf73b28",
+      "AmplifyAppId": "d17epkhoc48bv9"
+    },
+    "categories": {
+      "auth": {
+        "cognitoe37edc70": {}
+      }
+    }
+  },
+  "main": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-fakesnewsquizapp-main-05725-authRole",
+      "UnauthRoleArn": "arn:aws:iam::420408896210:role/amplify-fakesnewsquizapp-main-05725-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::420408896210:role/amplify-fakesnewsquizapp-main-05725-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-fakesnewsquizapp-main-05725-deployment",
+      "UnauthRoleName": "amplify-fakesnewsquizapp-main-05725-unauthRole",
+      "StackName": "amplify-fakesnewsquizapp-main-05725",
+      "StackId": "arn:aws:cloudformation:us-east-1:420408896210:stack/amplify-fakesnewsquizapp-main-05725/6d618910-112a-11ec-bfc6-0e9c0517557f",
+      "AmplifyAppId": "d22x2a4d5wtl14"
+    },
+    "categories": {
+      "auth": {
+        "cognitoe37edc70": {}
+      },
+      "function": {
+        "QuizItemLambda": {}
+      }
+    }
+  }
 }

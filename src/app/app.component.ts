@@ -26,10 +26,10 @@ export class AppComponent implements OnInit {
   }
 
  getQuizItem() {
-    API.get("QuizGameAPI", "/quizitem", {})
+    API.get("QuizGameAPI", "/question", {})
     	.then(({ body: quizItem }) => this.quizItem = quizItem)
     	.catch(({ message }: HttpErrorResponse) => {
-        	console.error("Error getting quiz item. Error:", message);
+        	console.error("Error getting question. Error:", message);
         	this.error = "An error has occured please reload the page and try again.";
 			setTimeout(() => { this.error = null }, 10000);   
 	 });
@@ -38,7 +38,7 @@ export class AppComponent implements OnInit {
 
   onSubmit({ quizItemId, answer }) {
   	const body = { quizItemId, answer };
-    API.post("QuizGameAPI", "/quizitem", { body })
+    API.post("QuizGameAPI", "/answer", { body })
       .then(({ body }) => this.answer = body.isCorrectAnswer)
       .catch(({ message }: HttpErrorResponse) => {
         	console.error("Error submitting answer. Error:", message);

@@ -6,6 +6,20 @@
             "privacy": {
                 "open": true
             }
+        },
+        {
+            "name": "/question",
+            "lambdaFunction": "getQuestionLambda",
+            "privacy": {
+                "open": true
+            }
+        },
+        {
+            "name": "/answer",
+            "lambdaFunction": "sendAnswerLambda",
+            "privacy": {
+                "open": true
+            }
         }
     ],
     "resourceName": "QuizGameAPI",
@@ -13,13 +27,19 @@
     "functionArns": [
         {
             "lambdaFunction": "QuizItemLambda"
+        },
+        {
+            "lambdaFunction": "getQuestionLambda"
+        },
+        {
+            "lambdaFunction": "sendAnswerLambda"
         }
     ],
     "privacy": {
         "auth": 0,
         "unauth": 0,
-        "authRoleName": "amplify-fakesnewsquizapp-dev-123004-authRole",
-        "unAuthRoleName": "amplify-fakesnewsquizapp-dev-123004-unauthRole"
+        "authRoleName": "amplify-fakesnewsquizapp-main-05725-authRole",
+        "unAuthRoleName": "amplify-fakesnewsquizapp-main-05725-unauthRole"
     },
     "dependsOn": [
         {
@@ -29,7 +49,23 @@
                 "Name",
                 "Arn"
             ]
+        },
+        {
+            "category": "function",
+            "resourceName": "getQuestionLambda",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        },
+        {
+            "category": "function",
+            "resourceName": "sendAnswerLambda",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
         }
     ],
-    "uuid": "acf88aa2"
+    "uuid": "03f8dfc7"
 }

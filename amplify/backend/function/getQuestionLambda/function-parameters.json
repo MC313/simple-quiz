@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "storage": {
+      "QuizGameDB": [
+        "read"
+      ]
+    }
+  },
+  "lambdaLayers": []
+}

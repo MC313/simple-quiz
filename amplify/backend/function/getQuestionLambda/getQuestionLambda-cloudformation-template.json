@@ -1,7 +1,12 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "Lambda resource stack creation using Amplify CLI",
+  "Description": "Lambda Function resource stack creation using Amplify CLI",
   "Parameters": {
+    "CloudWatchRule": {
+      "Type": "String",
+      "Default": "NONE",
+      "Description": " Schedule Expression"
+    },
     "env": {
       "Type": "String"
     },
@@ -36,12 +41,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "QuizItemLambda",
+            "getQuestionLambda",
             {
               "Fn::Join": [
                 "",
                 [
-                  "QuizItemLambda",
+                  "getQuestionLambda",
                   "-",
                   {
                     "Ref": "env"
@@ -58,6 +63,12 @@
             },
             "REGION": {
               "Ref": "AWS::Region"
+            },
+            "STORAGE_QUIZGAMEDB_NAME": {
+              "Ref": "storageQuizGameDBName"
+            },
+            "STORAGE_QUIZGAMEDB_ARN": {
+              "Ref": "storageQuizGameDBArn"
             }
           }
         },
@@ -67,11 +78,12 @@
             "Arn"
           ]
         },
-        "Runtime": "nodejs14.x",
+        "Runtime": "nodejs12.x",
+        "Layers": [],
         "Timeout": "25",
         "Code": {
           "S3Bucket": "amplify-fakesnewsquizapp-main-05725-deployment",
-          "S3Key": "amplify-builds/QuizItemLambda-687a56365141416d4b68-build.zip"
+          "S3Key": "amplify-builds/getQuestionLambda-5344755463536e494a75-build.zip"
         }
       }
     },
@@ -81,12 +93,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "fakesnewsquizappLambdaRoleeb429a02",
+            "fakesnewsquizappLambdaRole4531121a",
             {
               "Fn::Join": [
                 "",
                 [
-                  "fakesnewsquizappLambdaRoleeb429a02",
+                  "fakesnewsquizappLambdaRole4531121a",
                   "-",
                   {
                     "Ref": "env"
@@ -152,15 +164,35 @@
                   }
                 ]
               }
-            },
+            }
+          ]
+        }
+      }
+    },
+    "AmplifyResourcesPolicy": {
+      "DependsOn": [
+        "LambdaExecutionRole"
+      ],
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyName": "amplify-lambda-execution-policy",
+        "Roles": [
+          {
+            "Ref": "LambdaExecutionRole"
+          }
+        ],
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
             {
               "Effect": "Allow",
               "Action": [
-                "dynamodb:GetItem",
-                "dynamodb:Query",
+                "dynamodb:Get*",
+                "dynamodb:BatchGetItem",
+                "dynamodb:List*",
+                "dynamodb:Describe*",
                 "dynamodb:Scan",
-                "dynamodb:PutItem",
-                "dynamodb:UpdateItem"
+                "dynamodb:Query"
               ],
               "Resource": [
                 {
