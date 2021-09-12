@@ -36,9 +36,8 @@ export class AppComponent implements OnInit {
   }
 
 
-  onSubmit({ quizItemId, answer }) {
-  	const body = { quizItemId, answer };
-    API.post("QuizGameAPI", "/answer", { body })
+  onSubmit(requestParams) {
+    API.post("QuizGameAPI", "/answer", requestParams)
       .then(({ body }) => this.answer = body.isCorrectAnswer)
       .catch(({ message }: HttpErrorResponse) => {
         	console.error("Error submitting answer. Error:", message);

@@ -14,8 +14,12 @@ AWS.config.update({ region });
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 
 exports.handler = async ({ body }) => {
+    let statusCode = 500;
+    if(!validParams(body)) {
+        statusCode = 400
+        throw new Error("Invalid parameters.")
+    };
     try {
-        if(!validParams(body)) return;
         const { answer, quizItemId } = body;
         const dbParams = {
             TableName: tableName,
@@ -38,10 +42,10 @@ exports.handler = async ({ body }) => {
             body: JSON.stringify(response)
         }
     } catch (error) {
-        console.error("Error getting answer for question.", error);
+        console.error("Error submitting answer.", error);
         return {
-            statusCode: 500,
-            message: error
+            statusCode,
+            body: JSON.stringify({ message: error })
         }
     }
 };

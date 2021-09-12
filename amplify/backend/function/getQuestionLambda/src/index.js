@@ -15,18 +15,27 @@ AWS.config.update({ region });
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 
 exports.handler = async () => {
+    const clientError = new ClientError();
     try {
         let dbParams = { TableName: tableName };
-        const { Items } = await dynamodb.scan(dbParams).promise();
+
+        const { Items = null } = await dynamodb.scan(dbParams).promise();
+        if(!Items) handleError("Invalid Items in the database.");
+
         const randomIndex = getRandomNumber(0, Items.length);
-        const { quizItemId } = Items[randomIndex];
+
+        const { quizItemId = null } = Items[randomIndex];
+        if(!quizItemId) handleError( "Invalid quizItemId returned.");
+
         dbParams = { 
             ...dbParams, 
             Key: { 
                 quizItemId 
             }
         };
-        const { Item } = await dynamodb.get(dbParams).promise();
+        const { Item = null } = await dynamodb.get(dbParams).promise();
+        if(!Items) handleError("Invalid Items in the database.");
+
         return {
             statusCode: 200,
             headers: {
@@ -35,13 +44,26 @@ exports.handler = async () => {
             body: JSON.stringify(Item),
         };
     } catch (error) {
-        console.error("Error getting question. ", error);
+        console.error("Error getting quote. ", error);
         return {
             statusCode: 500,
-            message: error
+            body: JSON.stringify({ message: clientError.get() || error })
         }
     }
 };
+
+function handleError(internalError, uiError = null) {
+    clientError.set(uiError);
+    throw new Error(internalError);
+};
+
+class ClientError {
+    constructor() {
+        this.clientError = "Internal server error.";
+        this.get = () => this.clientError;
+        this.set = (error) => { this.clientError = error }
+    }
+}
 
 function getRandomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
