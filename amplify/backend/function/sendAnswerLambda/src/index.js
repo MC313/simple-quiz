@@ -1,13 +1,13 @@
 /* Amplify Params - DO NOT EDIT
 	ENV
 	REGION
-	STORAGE_QUIZGAMEDB_ARN
-	STORAGE_QUIZGAMEDB_NAME
+	STORAGE_QUOTESDB_ARN
+	STORAGE_QUOTESDB_NAME
 Amplify Params - DO NOT EDIT */
 const AWSXRay = require('aws-xray-sdk-core');
 const AWS = AWSXRay.captureAWS(require('aws-sdk'));
 const region = process.env.REGION;
-const tableName = process.env.STORAGE_QUIZGAMEDB_NAME;
+const tableName = process.env.STORAGE_QUOTESDB_NAME;
 
 AWS.config.update({ region });
 
@@ -20,11 +20,11 @@ exports.handler = async ({ body }) => {
         throw new Error("Invalid parameters.")
     };
     try {
-        const { answer, quizItemId } = body;
+        const { answer, quoteId } = body;
         const dbParams = {
             TableName: tableName,
             Key: {
-                quizItemId
+                quoteId
             }
         };
         const { Item } = await dynamodb.get(dbParams).promise();

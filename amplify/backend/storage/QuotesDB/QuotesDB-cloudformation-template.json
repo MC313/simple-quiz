@@ -33,7 +33,7 @@
                 "AttributeDefinitions": [
                   
                   {
-                      "AttributeName": "quizItemId",
+                      "AttributeName": "quoteId",
                       "AttributeType": "S"
                   } 
                   
@@ -41,7 +41,7 @@
                 "KeySchema": [
                   
                   {
-                    "AttributeName": "quizItemId",
+                    "AttributeName": "quoteId",
                     "KeyType": "HASH"
                   } 
                   

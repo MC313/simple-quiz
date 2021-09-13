@@ -10,13 +10,13 @@
     "env": {
       "Type": "String"
     },
-    "storageQuizGameDBName": {
+    "storageQuotesDBName": {
       "Type": "String",
-      "Default": "storageQuizGameDBName"
+      "Default": "storageQuotesDBName"
     },
-    "storageQuizGameDBArn": {
+    "storageQuotesDBArn": {
       "Type": "String",
-      "Default": "storageQuizGameDBArn"
+      "Default": "storageQuotesDBArn"
     }
   },
   "Conditions": {
@@ -64,11 +64,11 @@
             "REGION": {
               "Ref": "AWS::Region"
             },
-            "STORAGE_QUIZGAMEDB_NAME": {
-              "Ref": "storageQuizGameDBName"
+            "STORAGE_QUOTESDB_NAME": {
+              "Ref": "storageQuotesDBName"
             },
-            "STORAGE_QUIZGAMEDB_ARN": {
-              "Ref": "storageQuizGameDBArn"
+            "STORAGE_QUOTESDB_ARN": {
+              "Ref": "storageQuotesDBArn"
             }
           }
         },
@@ -78,12 +78,12 @@
             "Arn"
           ]
         },
-        "Runtime": "nodejs12.x",
+        "Runtime": "nodejs14.x",
         "Layers": [],
         "Timeout": "25",
         "Code": {
           "S3Bucket": "amplify-fakesnewsquizapp-main-05725-deployment",
-          "S3Key": "amplify-builds/sendAnswerLambda-6658506551672b48747a-build.zip"
+          "S3Key": "amplify-builds/sendAnswerLambda-545a67456e74304c7272-build.zip"
         }
       }
     },
@@ -196,14 +196,14 @@
               ],
               "Resource": [
                 {
-                  "Ref": "storageQuizGameDBArn"
+                  "Ref": "storageQuotesDBArn"
                 },
                 {
                   "Fn::Join": [
                     "/",
                     [
                       {
-                        "Ref": "storageQuizGameDBArn"
+                        "Ref": "storageQuotesDBArn"
                       },
                       "index/*"
                     ]

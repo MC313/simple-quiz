@@ -1,0 +1,5 @@
+{
+    "tableName": "QuotesTable",
+    "partitionKeyName": "quoteId",
+    "partitionKeyType": "S"
+}
