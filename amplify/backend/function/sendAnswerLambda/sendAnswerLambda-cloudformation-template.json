@@ -83,7 +83,7 @@
         "Timeout": "25",
         "Code": {
           "S3Bucket": "amplify-fakesnewsquizapp-main-05725-deployment",
-          "S3Key": "amplify-builds/sendAnswerLambda-76593450587742776b76-build.zip"
+          "S3Key": "amplify-builds/sendAnswerLambda-6658506551672b48747a-build.zip"
         }
       }
     },

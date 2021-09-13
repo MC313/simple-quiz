@@ -1,22 +1,15 @@
 {
     "paths": [
         {
-            "name": "/quizitem",
-            "lambdaFunction": "QuizItemLambda",
-            "privacy": {
-                "open": true
-            }
-        },
-        {
-            "name": "/question",
-            "lambdaFunction": "getQuestionLambda",
-            "privacy": {
-                "open": true
-            }
-        },
-        {
             "name": "/answer",
             "lambdaFunction": "sendAnswerLambda",
+            "privacy": {
+                "open": true
+            }
+        },
+        {
+            "name": "/quotes",
+            "lambdaFunction": "getQuoteLambda",
             "privacy": {
                 "open": true
             }
@@ -26,13 +19,10 @@
     "apiName": "QuizGameAPI",
     "functionArns": [
         {
-            "lambdaFunction": "QuizItemLambda"
-        },
-        {
-            "lambdaFunction": "getQuestionLambda"
-        },
-        {
             "lambdaFunction": "sendAnswerLambda"
+        },
+        {
+            "lambdaFunction": "getQuoteLambda"
         }
     ],
     "privacy": {
@@ -44,28 +34,20 @@
     "dependsOn": [
         {
             "category": "function",
-            "resourceName": "QuizItemLambda",
-            "attributes": [
-                "Name",
-                "Arn"
-            ]
-        },
-        {
-            "category": "function",
-            "resourceName": "getQuestionLambda",
-            "attributes": [
-                "Name",
-                "Arn"
-            ]
-        },
-        {
-            "category": "function",
             "resourceName": "sendAnswerLambda",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        },
+        {
+            "category": "function",
+            "resourceName": "getQuoteLambda",
             "attributes": [
                 "Name",
                 "Arn"
             ]
         }
     ],
-    "uuid": "03f8dfc7"
+    "uuid": "96264b07"
 }

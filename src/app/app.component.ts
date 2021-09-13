@@ -26,10 +26,10 @@ export class AppComponent implements OnInit {
   }
 
  getQuizItem() {
-    API.get("QuizGameAPI", "/question", {})
+    API.get("QuizGameAPI", "/quotes", {})
     	.then(({ body: quizItem }) => this.quizItem = quizItem)
     	.catch(({ message }: HttpErrorResponse) => {
-        	console.error("Error getting question. Error:", message);
+        	console.error("Error getting quote. Error:", message);
         	this.error = "An error has occured please reload the page and try again.";
 			setTimeout(() => { this.error = null }, 10000);   
 	 });

@@ -4,8 +4,8 @@
 	STORAGE_QUIZGAMEDB_ARN
 	STORAGE_QUIZGAMEDB_NAME
 Amplify Params - DO NOT EDIT */
-//const AWSXRay = require('aws-xray-sdk-core');
-const AWS = require('aws-sdk');
+const AWSXRay = require('aws-xray-sdk-core');
+const AWS = AWSXRay.captureAWS(require('aws-sdk'));
 const region = process.env.REGION;
 const tableName = process.env.STORAGE_QUIZGAMEDB_NAME;
 
@@ -52,7 +52,7 @@ exports.handler = async ({ body }) => {
 
 function validParams(params) {
     for(param of params) {
-      if(!param || param !== false) return false;
+        if(typeof(param) !== "boolean") return false;
     };
     return true;
   };

@@ -32,9 +32,6 @@
     "categories": {
       "auth": {
         "cognitoe37edc70": {}
-      },
-      "function": {
-        "QuizItemLambda": {}
       }
     }
   }

@@ -41,12 +41,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "getQuestionLambda",
+            "getQuoteLambda",
             {
               "Fn::Join": [
                 "",
                 [
-                  "getQuestionLambda",
+                  "getQuoteLambda",
                   "-",
                   {
                     "Ref": "env"
@@ -83,7 +83,7 @@
         "Timeout": "25",
         "Code": {
           "S3Bucket": "amplify-fakesnewsquizapp-main-05725-deployment",
-          "S3Key": "amplify-builds/getQuestionLambda-566a4f7550686f335a48-build.zip"
+          "S3Key": "amplify-builds/getQuoteLambda-344c576459334c756d49-build.zip"
         }
       }
     },
@@ -93,12 +93,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "fakesnewsquizappLambdaRole4531121a",
+            "fakesnewsquizappLambdaRolec07341d7",
             {
               "Fn::Join": [
                 "",
                 [
-                  "fakesnewsquizappLambdaRole4531121a",
+                  "fakesnewsquizappLambdaRolec07341d7",
                   "-",
                   {
                     "Ref": "env"
