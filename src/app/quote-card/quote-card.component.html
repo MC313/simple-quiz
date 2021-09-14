@@ -1,4 +1,4 @@
-<section class="fn-card" *ngIf="quizItem; else loading">
+<section class="fn-card" *ngIf="quote; else loading">
   <!-- Answer Overlay -->
   <div class="card-overlay" 
     [@toggleOverlay]="overlayState"
@@ -13,7 +13,7 @@
       <i class="material-icons">{{ overlayIcon }}</i>
       <h3>{{ overlayHeader }}</h3>
       <p>Source:
-        <a *ngIf="quizItem.source" href={{quizItem.source}}>{{ quizItem.source }}</a>
+        <a *ngIf="quote.source" href={{quote.source}}>{{ quote.source }}</a>
       </p>
     </article>
   </div>
@@ -21,17 +21,17 @@
 
   <!-- Card Content -->
   <article class="fn-card__title">
-    Topic: {{ quizItem.tags[0] }}
+    Topic: {{ quote.category }}
   </article>
-  <div class="fn-card__content">
-    {{ quizItem.quizItemText }}
+  <div class="fn-card__content centered">
+    "{{ quote.quote }}"
   </div>
   <div class="fn-card__buttons">
-    <button class="button button--active" (click)="sumbitAnswer(quizItem.quizItemId, true)" [disabled]="disableBtn">
-      Real News
+    <button class="button button--active" (click)="sumbitAnswer(quote.quoteId, true)" [disabled]="disableBtn">
+      Real Quote
     </button>
-    <button class="button" (click)="sumbitAnswer(quizItem.quizItemId, false)" [disabled]="disableBtn">
-      Fake News
+    <button class="button" (click)="sumbitAnswer(quote.quoteId, false)" [disabled]="disableBtn">
+      Fake Quote
     </button>
   </div>
   <!-- Card Content End -->
@@ -46,17 +46,19 @@
       <span class="skeleton__title"></span>
     </article>
 
-    <div class="fn-card__content">
-      <span class="skeleton__content"></span>
-      <span class="skeleton__content"></span>
-      <span class="skeleton__content"></span>
-      <span class="skeleton__content"></span>
-      <span class="skeleton"></span>
+    <div class="content-wrapper">
+      <div class="fn-card__content">
+        <span class="skeleton__content"></span>
+        <span class="skeleton__content"></span>
+        <span class="skeleton__content"></span>
+        <span class="skeleton__content"></span>
+        <span class="skeleton"></span>
+      </div>
     </div>
 
     <div class="fn-card__buttons">
-      <button class="button button--active">Real News</button>
-      <button class="button">Fake News</button>
+      <button class="button button--active">Real Quote</button>
+      <button class="button">Fake Quote</button>
     </div>
   </section>
 </ng-template>

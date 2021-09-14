@@ -15,7 +15,7 @@ const dynamodb = new AWS.DynamoDB.DocumentClient();
 
 exports.handler = async () => {
     try {
-        let dbParams = { 
+        const dbParams = { 
             TableName: tableName,
             Limit: 20
         };
@@ -25,9 +25,8 @@ exports.handler = async () => {
 
         const randomIndex = getRandomNumber(0, quotes.length);
         
-        const { quoteId = null } = quotes[randomIndex];
+        const quote = quotes[randomIndex] || null;
         
-        const { Items: quote = null } = await dynamodb.get(dbParams).promise();
         if(!quote) throw new CustomException("Quote not found.", 404);
         
         return {

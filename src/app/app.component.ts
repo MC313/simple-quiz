@@ -3,9 +3,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 
 import API from '@aws-amplify/api';
 
-import { QuizItem } from './QuizItem';
-import { Answer } from './Answer';
-import { AnswerValues } from './AnswerValues';
+import { Quote } from './Quote';
 
 @Component({
   selector: 'fn-root',
@@ -15,19 +13,19 @@ import { AnswerValues } from './AnswerValues';
 export class AppComponent implements OnInit {
   answer: boolean;
   error: string = null;
-  quizItem: QuizItem;
+  quote:  Quote;
   topics: string[];
   topicsBool: boolean = false;
 
   constructor() { }
 
   ngOnInit() {
-    this.getQuizItem();
+    this.getQuote();
   }
 
- getQuizItem() {
+ getQuote() {
     API.get("QuizGameAPI", "/quotes", {})
-    	.then(({ body: quizItem }) => this.quizItem = quizItem)
+    	.then((response) => this.quote = response)
     	.catch(({ message }: HttpErrorResponse) => {
         	console.error("Error getting quote. Error:", message);
         	this.error = "An error has occured please reload the page and try again.";
@@ -48,10 +46,10 @@ export class AppComponent implements OnInit {
 
 
   resetCard() {
-    this.quizItem = null;
+    this.quote = null;
     setTimeout(() => {
       //this.answer = null;
-      this.getQuizItem();
+      this.getQuote();
     }, 6000);
   }
 

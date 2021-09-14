@@ -1,12 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
-//$primary: #360568;
-//$secondary: #7f557d;
 $primary: #ff3d00;
 $primary-text: #182d55;
 $secondary: #ff7539;
-$stale-grey: #f5f5f6;
+$white: #f5f5f6;
+$almost-white: darken(#faf9f6, 2%);
 $button-border-radius: 4px;
 $card-border-radius: 8px;
+
+%absolute-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 :root {
   font-size: 16px;
@@ -23,6 +28,10 @@ body {
 
 * {
   box-sizing: border-box;
+}
+
+.centered {
+  @extend %absolute-center;
 }
 
 .material-icons {

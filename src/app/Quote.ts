@@ -1,9 +1,6 @@
 export interface Quote {
-  created: Date;
-  _id: string;
   quoteId: string;
-  realQuote: boolean;
+  isRealQuote: boolean;
   source: string;
-  tags: string[];
-  text: string;
+  category: string;
 }

@@ -1,21 +1,17 @@
 import {
   Component,
-  OnInit,
   OnChanges,
-  OnDestroy,
   Input,
   EventEmitter,
   Output,
-  HostBinding,
-  HostListener,
   SimpleChanges
 } from '@angular/core';
 
-import { QuizItem } from '../QuizItem';
+import { Quote } from '../Quote';
 import { AnswerValues } from '../AnswerValues';
 import { quoteCardAnimations } from './quote-card-animations';
 
-type UserAnswer = { quizItemId: string, answer: boolean };
+type UserAnswer = { quoteId: string, answer: boolean };
 
 @Component({
   selector: 'fn-quote-card',
@@ -35,11 +31,17 @@ export class QuoteCardComponent implements OnChanges {
   overlayState: 'hide' | 'show' = 'hide';
 
   @Input() correctAnswer: boolean;
-  @Input() quizItem: QuizItem;
+  @Input() quote: Quote;
   @Output() userAnswer: EventEmitter<UserAnswer> = new EventEmitter();
   @Output() closingOverlay = new EventEmitter();
 
   constructor() { }
+
+  ngOnInit() {
+    if(!this.quote) {
+      this.disableBtn = true
+    }
+  }
 
   ngOnChanges({ firstChange }: SimpleChanges) {
   	if (firstChange) return;
@@ -75,16 +77,16 @@ export class QuoteCardComponent implements OnChanges {
     this.backgroundColor = correctAnswer ? 'green' : 'red';
   }
 
-  sumbitAnswer(quizItemId: string, answer: boolean) {
+  sumbitAnswer(quoteId: string, answer: boolean) {
     this.disableBtn = true;
-    this.userAnswer.emit({ quizItemId, answer });
+    this.userAnswer.emit({ quoteId, answer });
   }
 
   onClosingOverlay({ fromState, toState }) {
     if (fromState === 'show' && toState === 'hide') {
-		this.disableBtn = false;
-		this.closingOverlay.emit();
-	};
+      this.disableBtn = false;
+      this.closingOverlay.emit();
+    };
   };
 
 }
