@@ -43,6 +43,13 @@
   .content-wrapper {
     @extend %absolute-center;
   }
+
+  .content-wrapper .fn-card__content {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+  }
   
   .fn-card__content { 
     font-family: Arial, Helvetica, sans-serif;

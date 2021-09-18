@@ -25,7 +25,7 @@ export class QuoteCardComponent implements OnChanges {
   backgroundColor: 'green' | 'red';
   disableBtn: boolean = false;
   isRealBtnLoading: boolean = false;
-  isRealFakeLoading: boolean = false;
+  isFakeBtnLoading: boolean = false;
   overlayHeader: 'Correct Answer' | 'Incorrect Answer';
   overlayIcon: 'check_circle_outline' | 'highlight_off';
   overlayState: 'hide' | 'show' = 'hide';
@@ -38,9 +38,9 @@ export class QuoteCardComponent implements OnChanges {
   constructor() { }
 
   ngOnInit() {
-    if(!this.quote) {
-      this.disableBtn = true
-    }
+    // if(!this.quote) {
+    //   this.disableBtn = true
+    // }
   }
 
   ngOnChanges({ firstChange }: SimpleChanges) {
@@ -50,7 +50,7 @@ export class QuoteCardComponent implements OnChanges {
 
   handleAnswerChanges(correctAnswer: boolean) {
     this.isRealBtnLoading = false;
-    this.isRealBtnLoading = false;
+    this.isFakeBtnLoading = false;
     this.onToggleOverlay();
     this.setOverlayHeaderValue(correctAnswer);
     this.setOverlayIconValue(correctAnswer);
