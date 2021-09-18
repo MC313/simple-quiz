@@ -1,17 +1,17 @@
 {
-    "projectName": "FakesNewsQuizApp",
-    "version": "3.0",
-    "frontend": "javascript",
-    "javascript": {
-        "framework": "angular",
-        "config": {
-            "SourceDir": "src",
-            "DistributionDir": "dist",
-            "BuildCommand": "ng build",
-            "StartCommand": "ng serve"
-        }
-    },
-    "providers": [
-        "awscloudformation"
-    ]
+  "projectName": "FakesNewsQuizApp",
+  "version": "3.1",
+  "frontend": "javascript",
+  "javascript": {
+    "framework": "angular",
+    "config": {
+      "SourceDir": "src",
+      "DistributionDir": "dist",
+      "BuildCommand": "ng build",
+      "StartCommand": "ng serve"
+    }
+  },
+  "providers": [
+    "awscloudformation"
+  ]
 }

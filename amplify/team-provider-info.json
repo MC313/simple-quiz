@@ -32,6 +32,12 @@
     "categories": {
       "auth": {
         "cognitoe37edc70": {}
+      },
+      "function": {
+        "sendAnswerLambda": {
+          "deploymentBucketName": "amplify-fakesnewsquizapp-main-05725-deployment",
+          "s3Key": "amplify-builds/sendAnswerLambda-6c6a696d4c3246777644-build.zip"
+        }
       }
     }
   }

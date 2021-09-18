@@ -14,21 +14,22 @@ AWS.config.update({ region });
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 
 exports.handler = async ({ body }) => {
-    let statusCode = 500;
-    if(!validParams(body)) {
-        statusCode = 400
-        throw new Error("Invalid parameters.")
-    };
+    const { answer, quoteId } = body;
+
+    if(typeof(answer) !== "boolean" || !quoteId) throw new CustomException("Invalid parameter.", 400);
+
     try {
-        const { answer, quoteId } = body;
         const dbParams = {
             TableName: tableName,
             Key: {
                 quoteId
             }
         };
-        const { Item } = await dynamodb.get(dbParams).promise();
+        const { Item = null } = await dynamodb.get(dbParams).promise();
+        if(!Item) throw new CustomException(`Quote with id of ${quoteId} not found.`, 404);
+
         const { isRealQuote, source } = Item;
+        
         const response = {
             isRealQuote,
             isCorrectAnswer: isRealQuote === answer,
@@ -41,18 +42,17 @@ exports.handler = async ({ body }) => {
             },
             body: JSON.stringify(response)
         }
-    } catch (error) {
-        console.error("Error submitting answer.", error);
+    } catch ({ message, statusCode = 500, uiMessage = "Internal server error." }) {
+        console.error("Error submitting answer.", message);
         return {
             statusCode,
-            body: JSON.stringify({ message: error })
+            body: JSON.stringify({ message })
         }
     }
 };
 
-function validParams(params) {
-    for(param of params) {
-        if(typeof(param) !== "boolean") return false;
-    };
-    return true;
-  };
+function CustomException(message, statusCode = 500,  uiMessage = message) {
+    this.message = message;
+    this.statusCode = statusCode;
+    this.uiMessage = uiMessage;
+};
