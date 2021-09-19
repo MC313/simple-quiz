@@ -16,7 +16,6 @@ export class AppComponent implements OnInit {
   quote:  Quote;
   score: number = 0;
   topics: string[];
-  topicsBool: boolean = false;
 
   constructor() { }
 
@@ -36,6 +35,7 @@ export class AppComponent implements OnInit {
 
 
   onSubmit(requestParams) {
+    console.log("on submit........")
     API.post("QuizGameAPI", "/answer", { body: requestParams })
       .then(({ isCorrectAnswer }) => {
         this.answer = isCorrectAnswer
