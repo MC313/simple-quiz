@@ -1,0 +1,16 @@
+@import '../../styles.scss';
+
+:host {
+    @extend %card;
+    height: 65px;
+    margin-bottom: 20px;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    & > .score {
+        flex: 60%;
+        text-align: right;
+    }
+}

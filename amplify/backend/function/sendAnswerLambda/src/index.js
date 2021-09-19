@@ -13,10 +13,10 @@ AWS.config.update({ region });
 
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 
-exports.handler = async ({ body }) => {
-    const { answer, quoteId } = body;
+exports.handler = async (event) => {
+    const { answer, quoteId } = JSON.parse(event.body);
 
-    if(typeof(answer) !== "boolean" || !quoteId) throw new CustomException("Invalid parameter.", 400);
+    if(typeof(answer) !== "boolean" || !quoteId) return createErrorResponse("Invalid parameter.", 400);
 
     try {
         const dbParams = {
@@ -26,10 +26,10 @@ exports.handler = async ({ body }) => {
             }
         };
         const { Item = null } = await dynamodb.get(dbParams).promise();
-        if(!Item) throw new CustomException(`Quote with id of ${quoteId} not found.`, 404);
+        if(!Item) return createErrorResponse(`Quote with id of ${quoteId} not found.`, 404);
 
         const { isRealQuote, source } = Item;
-        
+
         const response = {
             isRealQuote,
             isCorrectAnswer: isRealQuote === answer,
@@ -51,8 +51,11 @@ exports.handler = async ({ body }) => {
     }
 };
 
-function CustomException(message, statusCode = 500,  uiMessage = message) {
-    this.message = message;
-    this.statusCode = statusCode;
-    this.uiMessage = uiMessage;
+function createErrorResponse(message, status, error = message) {
+    console.error("Error submitting answer.", error);
+    return {
+        statusCode: status,
+        body: JSON.stringify({ message })
+    }
 };
+

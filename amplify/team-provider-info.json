@@ -36,7 +36,11 @@
       "function": {
         "sendAnswerLambda": {
           "deploymentBucketName": "amplify-fakesnewsquizapp-main-05725-deployment",
-          "s3Key": "amplify-builds/sendAnswerLambda-6c6a696d4c3246777644-build.zip"
+          "s3Key": "amplify-builds/sendAnswerLambda-79744631585358675731-build.zip"
+        },
+        "getQuoteLambda": {
+          "deploymentBucketName": "amplify-fakesnewsquizapp-main-05725-deployment",
+          "s3Key": "amplify-builds/getQuoteLambda-7571376537394c423859-build.zip"
         }
       }
     }

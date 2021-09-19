@@ -20,10 +20,10 @@
   <!-- Answer Overlay End -->
 
   <!-- Card Content -->
-  <article class="fn-card__title">
+  <article class="fn-card__topic">
     Topic: {{ quote.category }}
   </article>
-  <div class="fn-card__content centered">
+  <div class="fn-card__quote centered">
     "{{ quote.quote }}"
   </div>
   <div class="fn-card__buttons">
@@ -35,19 +35,18 @@
     </button>
   </div>
   <!-- Card Content End -->
-
 </section>
 
 <!-- Skeleton loading screen -->
 <ng-template #loading>
   <section class="fn-card">
-    <article class="fn-card__title">
+    <article class="fn-card__topic">
       Topic:
       <span class="skeleton__title"></span>
     </article>
 
     <div class="content-wrapper">
-      <div class="fn-card__content">
+      <div class="fn-card__quote">
         <span class="skeleton__content"></span>
         <span class="skeleton__content"></span>
         <span class="skeleton__content"></span>
@@ -57,8 +56,8 @@
     </div>
 
     <div class="fn-card__buttons">
-      <button class="button button--active">Real Quote</button>
-      <button class="button">Fake Quote</button>
+      <button class="button button--active" disabled>Real Quote</button>
+      <button class="button" disabled>Fake Quote</button>
     </div>
   </section>
 </ng-template>

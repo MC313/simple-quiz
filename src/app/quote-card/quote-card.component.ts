@@ -32,8 +32,8 @@ export class QuoteCardComponent implements OnChanges {
 
   @Input() correctAnswer: boolean;
   @Input() quote: Quote;
-  @Output() userAnswer: EventEmitter<UserAnswer> = new EventEmitter();
   @Output() closingOverlay = new EventEmitter();
+  @Output() userAnswer: EventEmitter<UserAnswer> = new EventEmitter();
 
   constructor() { }
 

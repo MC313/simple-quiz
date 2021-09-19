@@ -14,6 +14,7 @@ export class AppComponent implements OnInit {
   answer: boolean;
   error: string = null;
   quote:  Quote;
+  score: number = 0;
   topics: string[];
   topicsBool: boolean = false;
 
@@ -36,7 +37,10 @@ export class AppComponent implements OnInit {
 
   onSubmit(requestParams) {
     API.post("QuizGameAPI", "/answer", { body: requestParams })
-      .then(({ body }) => this.answer = body.isCorrectAnswer)
+      .then(({ isCorrectAnswer }) => {
+        this.answer = isCorrectAnswer
+        this.updateScore(this.answer)
+      })
       .catch(({ message }: HttpErrorResponse) => {
         	console.error("Error submitting answer. Error:", message);
         	this.error = "An error has occured please reload the page and try again.";
@@ -44,20 +48,15 @@ export class AppComponent implements OnInit {
 	   });
   }
 
+  updateScore(answer: boolean) {
+    answer === true && this.score++;
+  }
+
 
   resetCard() {
     this.quote = null;
     setTimeout(() => {
-      //this.answer = null;
       this.getQuote();
     }, 6000);
   }
-
-/*
-  function handleError({ message }: HttpErrorResponse) {
-  	console.error(`${userText}. Error: ${message}`);
-  	this.error = "An error has occured please reload the page and try again.";
-  };
-*/
-
 }
