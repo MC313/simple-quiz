@@ -49,16 +49,18 @@ export class QuoteCardComponent implements OnChanges {
   }
 
   handleAnswerChanges(correctAnswer: boolean) {
+    console.log("handling answer")
     this.isRealBtnLoading = false;
     this.isFakeBtnLoading = false;
-    this.onToggleOverlay();
     this.setOverlayHeaderValue(correctAnswer);
     this.setOverlayIconValue(correctAnswer);
     this.setOverlayBackground(correctAnswer);
+    this.onToggleOverlay();
   }
 
   onToggleOverlay() {
     this.overlayState = this.overlayState === 'hide' ? 'show' : 'hide';
+    
   }
 
   setOverlayHeaderValue(correctAnswer: boolean) {
@@ -78,7 +80,8 @@ export class QuoteCardComponent implements OnChanges {
   }
 
   sumbitAnswer(quoteId: string, answer: boolean) {
-    this.disableBtn = true;
+    this.isRealBtnLoading = this.correctAnswer === true;
+    this.isFakeBtnLoading = this.correctAnswer === false;
     this.userAnswer.emit({ quoteId, answer });
   }
 
