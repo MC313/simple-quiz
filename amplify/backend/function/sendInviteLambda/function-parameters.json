@@ -1,0 +1,18 @@
+{
+    "lambdaLayers": [
+      {
+        "type": "ProjectLayer",
+        "resourceName": "fakesnewsquizappDependenciesLayer",
+        "env": "main",
+        "version": "Always choose latest version",
+        "isLatestVersionSelected": true
+      },
+      {
+        "type": "ProjectLayer",
+        "resourceName": "fakesnewsquizappTwilioLayer",
+        "env": "main",
+        "version": "Always choose latest version",
+        "isLatestVersionSelected": true
+      }
+    ]
+  }
