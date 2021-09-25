@@ -7,6 +7,7 @@
 Amplify Params - DO NOT EDIT */
 //const AWSXRay = require("aws-xray-sdk-core");
 const { DynamoDBClient, ScanCommand } = require("@aws-sdk/client-dynamodb");
+const { unmarshall } = require("@aws-sdk/util-dynamodb");
 const region = process.env.REGION;
 const tableName = process.env.STORAGE_QUOTESDB_NAME;
 const dynamodb = new DynamoDBClient({ region });
@@ -32,7 +33,7 @@ exports.handler = async () => {
             headers: {
                 "Access-Control-Allow-Origin": "*"
             }, 
-            body: JSON.stringify(quote),
+            body: JSON.stringify(unmarshall(quote)),
         };
     } catch ({ message, statusCode = 500, uiMessage = "Internal server error." }) {
         console.error("Error getting quote. ", message);

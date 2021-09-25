@@ -36,15 +36,15 @@
       "function": {
         "sendAnswerLambda": {
           "deploymentBucketName": "amplify-fakesnewsquizapp-main-05725-deployment",
-          "s3Key": "amplify-builds/sendAnswerLambda-65643532746c364c744e-build.zip"
+          "s3Key": "amplify-builds/sendAnswerLambda-6c6b3846325977457575-build.zip"
         },
         "getQuoteLambda": {
           "deploymentBucketName": "amplify-fakesnewsquizapp-main-05725-deployment",
-          "s3Key": "amplify-builds/getQuoteLambda-41692b676d6362643034-build.zip"
+          "s3Key": "amplify-builds/getQuoteLambda-356e33616e336355646f-build.zip"
         },
         "fakesnewsquizappDependenciesLayer": {
           "deploymentBucketName": "amplify-fakesnewsquizapp-main-05725-deployment",
-          "s3Key": "amplify-builds/fakesnewsquizappDependenciesLayer-LambdaLayerVersioncba1beb0-build.zip"
+          "s3Key": "amplify-builds/fakesnewsquizappDependenciesLayer-LambdaLayerVersion8e97a987-build.zip"
         },
         "fakesnewsquizappTwilioLayer": {
           "deploymentBucketName": "amplify-fakesnewsquizapp-main-05725-deployment",

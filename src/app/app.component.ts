@@ -35,7 +35,6 @@ export class AppComponent implements OnInit {
 
 
   onSubmit(requestParams) {
-    console.log("on submit........")
     API.post("QuizGameAPI", "/answer", { body: requestParams })
       .then(({ isCorrectAnswer }) => {
         this.answer = isCorrectAnswer

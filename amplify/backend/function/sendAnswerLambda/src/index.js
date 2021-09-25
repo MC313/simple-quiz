@@ -6,6 +6,7 @@
 Amplify Params - DO NOT EDIT */
 //const AWSXRay = require('aws-xray-sdk-core');
 const { DynamoDBClient, GetItemCommand } = require('@aws-sdk/client-dynamodb');
+const { marshall, unmarshall } = require("@aws-sdk/util-dynamodb");
 const region = process.env.REGION;
 const tableName = process.env.STORAGE_QUOTESDB_NAME;
 const dynamodb = new DynamoDBClient({ region });
@@ -18,15 +19,15 @@ exports.handler = async (event) => {
     try {
         const commandParams = {
             TableName: tableName,
-            Key: {
+            Key: marshall({
                 quoteId
-            }
+            })
         };
         const command = new GetItemCommand(commandParams);
         const { Item = null } = await dynamodb.send(command);
         if(!Item) return createErrorResponse(`Quote with id of ${quoteId} not found.`, 404);
 
-        const { isRealQuote, source } = Item;
+        const { isRealQuote, source } = unmarshall(Item);
 
         const response = {
             isRealQuote,
@@ -43,13 +44,13 @@ exports.handler = async (event) => {
     } catch (error) {
         console.error("Error submitting answer.", error);
         return {
-            statusCode,
+            statusCode: 500,
             body: JSON.stringify({ message: "Error submitting answer." })
         }
     }
 };
 
-function createErrorResponse(message, status, error = message) {
+function createErrorResponse(message, status = 500, error = message) {
     console.error("Error submitting answer.", error);
     return {
         statusCode: status,

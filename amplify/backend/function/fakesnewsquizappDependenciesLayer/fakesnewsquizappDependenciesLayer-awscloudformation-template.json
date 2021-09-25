@@ -20,7 +20,60 @@
     }
   },
   "Resources": {
-    "LambdaLayerVersioncba1beb0": {
+    "LambdaLayerVersion8e97a987": {
+      "Type": "AWS::Lambda::LayerVersion",
+      "Properties": {
+        "CompatibleRuntimes": {
+          "Ref": "runtimes"
+        },
+        "Content": {
+          "S3Bucket": {
+            "Ref": "deploymentBucketName"
+          },
+          "S3Key": {
+            "Ref": "s3Key"
+          }
+        },
+        "Description": {
+          "Ref": "description"
+        },
+        "LayerName": {
+          "Fn::Sub": [
+            "fakesnewsquizappDependenciesLayer-${env}",
+            {
+              "env": {
+                "Ref": "env"
+              }
+            }
+          ]
+        }
+      },
+      "DeletionPolicy": "Delete",
+      "UpdateReplacePolicy": "Retain"
+    },
+    "LambdaLayerPermissionAwsAccounts4204088962108e97a987": {
+      "Type": "AWS::Lambda::LayerVersionPermission",
+      "Properties": {
+        "Action": "lambda:GetLayerVersion",
+        "LayerVersionArn": {
+          "Ref": "LambdaLayerVersion8e97a987"
+        },
+        "Principal": "420408896210"
+      }
+    },
+    "LambdaLayerPermissionPrivate8e97a987": {
+      "Type": "AWS::Lambda::LayerVersionPermission",
+      "Properties": {
+        "Action": "lambda:GetLayerVersion",
+        "LayerVersionArn": {
+          "Ref": "LambdaLayerVersion8e97a987"
+        },
+        "Principal": {
+          "Ref": "AWS::AccountId"
+        }
+      }
+    },
+    "LambdaLayerVersiond89a869b": {
       "Type": "AWS::Lambda::LayerVersion",
       "Properties": {
         "CompatibleRuntimes": [
@@ -30,7 +83,7 @@
           "S3Bucket": {
             "Ref": "deploymentBucketName"
           },
-          "S3Key": "amplify-builds/fakesnewsquizappDependenciesLayer-LambdaLayerVersioncba1beb0-build.zip"
+          "S3Key": "amplify-builds/fakesnewsquizappDependenciesLayer-LambdaLayerVersiond89a869b-build.zip"
         },
         "Description": "Updated layer version 2021-09-23T05:24:12.767Z",
         "LayerName": {
@@ -47,19 +100,19 @@
       "DeletionPolicy": "Delete",
       "UpdateReplacePolicy": "Retain"
     },
-    "LambdaLayerPermissionAwsAccounts420408896210cba1beb0": {
+    "LambdaLayerPermissionAwsAccounts420408896210d89a869b": {
       "Type": "AWS::Lambda::LayerVersionPermission",
       "Properties": {
         "Action": "lambda:GetLayerVersion",
-        "LayerVersionArn": "arn:aws:lambda:us-east-1:420408896210:layer:fakesnewsquizappDependenciesLayer-main:4",
+        "LayerVersionArn": "arn:aws:lambda:us-east-1:420408896210:layer:fakesnewsquizappDependenciesLayer-main:6",
         "Principal": "420408896210"
       }
     },
-    "LambdaLayerPermissionPrivatecba1beb0": {
+    "LambdaLayerPermissionPrivated89a869b": {
       "Type": "AWS::Lambda::LayerVersionPermission",
       "Properties": {
         "Action": "lambda:GetLayerVersion",
-        "LayerVersionArn": "arn:aws:lambda:us-east-1:420408896210:layer:fakesnewsquizappDependenciesLayer-main:4",
+        "LayerVersionArn": "arn:aws:lambda:us-east-1:420408896210:layer:fakesnewsquizappDependenciesLayer-main:6",
         "Principal": {
           "Ref": "AWS::AccountId"
         }
@@ -69,7 +122,7 @@
   "Outputs": {
     "Arn": {
       "Value": {
-        "Ref": "LambdaLayerVersioncba1beb0"
+        "Ref": "LambdaLayerVersion8e97a987"
       }
     }
   }

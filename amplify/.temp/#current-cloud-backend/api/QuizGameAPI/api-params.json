@@ -1,0 +1,53 @@
+{
+    "paths": [
+        {
+            "name": "/answer",
+            "lambdaFunction": "sendAnswerLambda",
+            "privacy": {
+                "open": true
+            }
+        },
+        {
+            "name": "/quotes",
+            "lambdaFunction": "getQuoteLambda",
+            "privacy": {
+                "open": true
+            }
+        }
+    ],
+    "resourceName": "QuizGameAPI",
+    "apiName": "QuizGameAPI",
+    "functionArns": [
+        {
+            "lambdaFunction": "sendAnswerLambda"
+        },
+        {
+            "lambdaFunction": "getQuoteLambda"
+        }
+    ],
+    "privacy": {
+        "auth": 0,
+        "unauth": 0,
+        "authRoleName": "amplify-fakesnewsquizapp-main-05725-authRole",
+        "unAuthRoleName": "amplify-fakesnewsquizapp-main-05725-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "sendAnswerLambda",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        },
+        {
+            "category": "function",
+            "resourceName": "getQuoteLambda",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ],
+    "uuid": "96264b07"
+}

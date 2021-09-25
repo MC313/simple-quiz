@@ -1,0 +1,260 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-fakesnewsquizapp-main-05725-authRole",
+      "UnauthRoleArn": "arn:aws:iam::420408896210:role/amplify-fakesnewsquizapp-main-05725-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::420408896210:role/amplify-fakesnewsquizapp-main-05725-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-fakesnewsquizapp-main-05725-deployment",
+      "UnauthRoleName": "amplify-fakesnewsquizapp-main-05725-unauthRole",
+      "StackName": "amplify-fakesnewsquizapp-main-05725",
+      "StackId": "arn:aws:cloudformation:us-east-1:420408896210:stack/amplify-fakesnewsquizapp-main-05725/6d618910-112a-11ec-bfc6-0e9c0517557f",
+      "AmplifyAppId": "d22x2a4d5wtl14"
+    }
+  },
+  "storage": {
+    "QuotesDB": {
+      "service": "DynamoDB",
+      "providerPlugin": "awscloudformation",
+      "output": {
+        "PartitionKeyName": "quoteId",
+        "Region": "us-east-1",
+        "Arn": "arn:aws:dynamodb:us-east-1:420408896210:table/QuotesTable-main",
+        "StreamArn": "arn:aws:dynamodb:us-east-1:420408896210:table/QuotesTable-main/stream/2021-09-13T06:09:08.283",
+        "PartitionKeyType": "S",
+        "Name": "QuotesTable-main"
+      },
+      "lastPushTimeStamp": "2021-09-25T19:41:50.296Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-fakesnewsquizapp-main-05725-deployment/amplify-cfn-templates/storage/QuotesDB-cloudformation-template.json",
+        "logicalId": "storageQuotesDB"
+      }
+    }
+  },
+  "function": {
+    "sendAnswerLambda": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "fakesnewsquizappDependenciesLayer",
+          "attributes": [
+            "Arn"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "QuotesDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ],
+      "output": {
+        "Region": "us-east-1",
+        "Arn": "arn:aws:lambda:us-east-1:420408896210:function:sendAnswerLambda-main",
+        "Name": "sendAnswerLambda-main",
+        "LambdaExecutionRole": "fakesnewsquizappLambdaRole5a2f6cd1-main"
+      },
+      "lastPushTimeStamp": "2021-09-25T19:41:50.299Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-fakesnewsquizapp-main-05725-deployment/amplify-cfn-templates/function/sendAnswerLambda-cloudformation-template.json",
+        "logicalId": "functionsendAnswerLambda"
+      },
+      "lastBuildTimeStamp": "2021-09-23T05:47:09.817Z",
+      "lastBuildType": "PROD",
+      "lastPackageTimeStamp": "2021-09-23T05:47:10.333Z",
+      "distZipFilename": "sendAnswerLambda-65643532746c364c744e-build.zip",
+      "s3Bucket": {
+        "deploymentBucketName": "amplify-fakesnewsquizapp-main-05725-deployment",
+        "s3Key": "amplify-builds/sendAnswerLambda-65643532746c364c744e-build.zip"
+      },
+      "lastPushDirHash": "2pCzIvbSwRPZVDgYel1PIWfAyHA="
+    },
+    "sendInviteLambda": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "fakesnewsquizappDependenciesLayer",
+          "attributes": [
+            "Arn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "fakesnewsquizappTwilioLayer",
+          "attributes": [
+            "Arn"
+          ]
+        }
+      ],
+      "lastBuildTimeStamp": "2021-09-24T05:25:18.493Z",
+      "lastBuildType": "PROD",
+      "lastPackageTimeStamp": "2021-09-24T05:25:19.130Z",
+      "distZipFilename": "sendInviteLambda-7559594b78534f565158-build.zip",
+      "s3Bucket": {
+        "deploymentBucketName": "amplify-fakesnewsquizapp-main-05725-deployment",
+        "s3Key": "amplify-builds/sendInviteLambda-7559594b78534f565158-build.zip"
+      },
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-fakesnewsquizapp-main-05725-deployment/amplify-cfn-templates/function/sendInviteLambda-cloudformation-template.json",
+        "logicalId": "functionsendInviteLambda"
+      },
+      "lastPushTimeStamp": "2021-09-25T19:41:50.302Z",
+      "output": {
+        "Region": "us-east-1",
+        "Arn": "arn:aws:lambda:us-east-1:420408896210:function:sendInviteLambda-main",
+        "Name": "sendInviteLambda-main",
+        "LambdaExecutionRole": "fakesnewsquizappLambdaRole63e0d1d4-main"
+      },
+      "lastPushDirHash": "Gm7ZJig79n1O9y2aqxV2LUQQS1E="
+    },
+    "getQuoteLambda": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "fakesnewsquizappDependenciesLayer",
+          "attributes": [
+            "Arn"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "QuotesDB",
+          "attributes": [
+            "Name",
+            "Arn",
+            "StreamArn"
+          ]
+        }
+      ],
+      "output": {
+        "Region": "us-east-1",
+        "Arn": "arn:aws:lambda:us-east-1:420408896210:function:getQuoteLambda-main",
+        "Name": "getQuoteLambda-main",
+        "LambdaExecutionRole": "fakesnewsquizappLambdaRolec07341d7-main"
+      },
+      "lastPushTimeStamp": "2021-09-25T19:41:50.316Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-fakesnewsquizapp-main-05725-deployment/amplify-cfn-templates/function/getQuoteLambda-cloudformation-template.json",
+        "logicalId": "functiongetQuoteLambda"
+      },
+      "lastBuildTimeStamp": "2021-09-25T19:39:41.083Z",
+      "lastBuildType": "PROD",
+      "lastPackageTimeStamp": "2021-09-25T19:39:41.785Z",
+      "distZipFilename": "getQuoteLambda-724d33583352585a774e-build.zip",
+      "s3Bucket": {
+        "deploymentBucketName": "amplify-fakesnewsquizapp-main-05725-deployment",
+        "s3Key": "amplify-builds/getQuoteLambda-724d33583352585a774e-build.zip"
+      },
+      "lastPushDirHash": "eOba5VMcxPKoemj67+rI3ZmtXEs="
+    },
+    "fakesnewsquizappDependenciesLayer": {
+      "providerPlugin": "awscloudformation",
+      "service": "LambdaLayer",
+      "build": true,
+      "lastBuildTimeStamp": "2021-09-23T05:29:58.016Z",
+      "lastBuildType": "PROD",
+      "lastPackageTimeStamp": "2021-09-23T05:24:29.041Z",
+      "distZipFilename": "fakesnewsquizappDependenciesLayer-LambdaLayerVersioncba1beb0-build.zip",
+      "latestPushedVersionHash": "989ede10b173a22d2392ed05ddc899528083db09623f43ed5764ee4e4b54aebe",
+      "s3Bucket": {
+        "deploymentBucketName": "amplify-fakesnewsquizapp-main-05725-deployment",
+        "s3Key": "amplify-builds/fakesnewsquizappDependenciesLayer-LambdaLayerVersioncba1beb0-build.zip"
+      },
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-fakesnewsquizapp-main-05725-deployment/amplify-cfn-templates/function/fakesnewsquizappDependenciesLayer-awscloudformation-template.json",
+        "logicalId": "functionfakesnewsquizappDependenciesLayer"
+      },
+      "lastPushTimeStamp": "2021-09-25T19:41:50.306Z",
+      "output": {
+        "Arn": "arn:aws:lambda:us-east-1:420408896210:layer:fakesnewsquizappDependenciesLayer-main:6"
+      }
+    },
+    "fakesnewsquizappTwilioLayer": {
+      "providerPlugin": "awscloudformation",
+      "service": "LambdaLayer",
+      "build": true,
+      "lastBuildTimeStamp": "2021-09-23T05:29:58.018Z",
+      "lastBuildType": "PROD",
+      "lastPackageTimeStamp": "2021-09-23T05:24:27.122Z",
+      "distZipFilename": "fakesnewsquizappTwilioLayer-LambdaLayerVersion11c87e2b-build.zip",
+      "latestPushedVersionHash": "99167e8a352b95dcd1863592713fb55bf2d20697208bf5b5a6c98bea0009b184",
+      "s3Bucket": {
+        "deploymentBucketName": "amplify-fakesnewsquizapp-main-05725-deployment",
+        "s3Key": "amplify-builds/fakesnewsquizappTwilioLayer-LambdaLayerVersion11c87e2b-build.zip"
+      },
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-fakesnewsquizapp-main-05725-deployment/amplify-cfn-templates/function/fakesnewsquizappTwilioLayer-awscloudformation-template.json",
+        "logicalId": "functionfakesnewsquizappTwilioLayer"
+      },
+      "lastPushTimeStamp": "2021-09-25T19:41:50.308Z",
+      "output": {
+        "Arn": "arn:aws:lambda:us-east-1:420408896210:layer:fakesnewsquizappTwilioLayer-main:4"
+      }
+    }
+  },
+  "auth": {
+    "cognitoe37edc70": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "output": {
+        "AppClientSecret": "1760qnapgrs891ektjesf51vg476e331fce7nt7dj275m2ava21i",
+        "UserPoolId": "us-east-1_Jd7eLia2F",
+        "AppClientIDWeb": "3tgs32c2k0gremllume8o0q1rn",
+        "AppClientID": "1mek9io7jtif7c9ifb2ibh87rj",
+        "IdentityPoolId": "us-east-1:31eb0818-a8e8-473f-b3bf-dd2d61921439",
+        "IdentityPoolName": "fakesnewsquizapp_identitypool_14399dde__main",
+        "UserPoolName": "fakesnewsquizapp_userpool_14399dde"
+      },
+      "lastPushTimeStamp": "2021-09-25T19:41:50.309Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-fakesnewsquizapp-main-05725-deployment/amplify-cfn-templates/auth/cognitoe37edc70-cloudformation-template.yml",
+        "logicalId": "authcognitoe37edc70"
+      }
+    }
+  },
+  "api": {
+    "QuizGameAPI": {
+      "service": "API Gateway",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "sendAnswerLambda",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "getQuoteLambda",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ],
+      "output": {
+        "ApiName": "QuizGameAPI",
+        "RootUrl": "https://9bf4kdb4a7.execute-api.us-east-1.amazonaws.com/main",
+        "ApiId": "9bf4kdb4a7"
+      },
+      "lastPushTimeStamp": "2021-09-25T19:41:50.311Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-fakesnewsquizapp-main-05725-deployment/amplify-cfn-templates/api/QuizGameAPI-cloudformation-template.json",
+        "logicalId": "apiQuizGameAPI"
+      }
+    }
+  }
+}
