@@ -3,24 +3,22 @@
 	REGION
 	STORAGE_QUOTESDB_ARN
 	STORAGE_QUOTESDB_NAME
+	STORAGE_QUOTESDB_STREAMARN
 Amplify Params - DO NOT EDIT */
-const AWSXRay = require('aws-xray-sdk-core');
-const AWS = AWSXRay.captureAWS(require('aws-sdk'));
+//const AWSXRay = require("aws-xray-sdk-core");
+const { DynamoDBClient, ScanCommand } = require("@aws-sdk/client-dynamodb");
 const region = process.env.REGION;
 const tableName = process.env.STORAGE_QUOTESDB_NAME;
-
-AWS.config.update({ region });
-
-const dynamodb = new AWS.DynamoDB.DocumentClient();
+const dynamodb = new DynamoDBClient({ region });
+const commandParams = { 
+    TableName: tableName,
+    Limit: 20
+};
+const command = new ScanCommand(commandParams);
 
 exports.handler = async () => {
     try {
-        const dbParams = { 
-            TableName: tableName,
-            Limit: 20
-        };
-
-        const { Items: quotes = null } = await dynamodb.scan(dbParams).promise();
+        const { Items: quotes = null } = await dynamodb.send(command);
         if(!quotes || !quotes.length) throw new CustomException("No quotes found.", 404);
 
         const randomIndex = getRandomNumber(0, quotes.length);

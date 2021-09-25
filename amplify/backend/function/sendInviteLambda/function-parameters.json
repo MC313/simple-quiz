@@ -1,18 +1,18 @@
 {
-    "lambdaLayers": [
-      {
-        "type": "ProjectLayer",
-        "resourceName": "fakesnewsquizappDependenciesLayer",
-        "env": "main",
-        "version": "Always choose latest version",
-        "isLatestVersionSelected": true
-      },
-      {
-        "type": "ProjectLayer",
-        "resourceName": "fakesnewsquizappTwilioLayer",
-        "env": "main",
-        "version": "Always choose latest version",
-        "isLatestVersionSelected": true
-      }
-    ]
-  }
+  "lambdaLayers": [
+    {
+      "type": "ProjectLayer",
+      "resourceName": "fakesnewsquizappDependenciesLayer",
+      "version": "Always choose latest version",
+      "isLatestVersionSelected": true,
+      "env": "main"
+    },
+    {
+      "type": "ProjectLayer",
+      "resourceName": "fakesnewsquizappTwilioLayer",
+      "version": "Always choose latest version",
+      "isLatestVersionSelected": true,
+      "env": "main"
+    }
+  ]
+}

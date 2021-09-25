@@ -6,5 +6,13 @@
       ]
     }
   },
-  "lambdaLayers": []
+  "lambdaLayers": [
+    {
+      "type": "ProjectLayer",
+      "resourceName": "fakesnewsquizappDependenciesLayer",
+      "version": "Always choose latest version",
+      "isLatestVersionSelected": true,
+      "env": "main"
+    }
+  ]
 }

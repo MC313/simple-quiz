@@ -23,6 +23,10 @@
     },
     "s3Key": {
       "Type": "String"
+    },
+    "functionfakesnewsquizappDependenciesLayerArn": {
+      "Type": "String",
+      "Default": "functionfakesnewsquizappDependenciesLayerArn"
     }
   },
   "Conditions": {
@@ -85,7 +89,11 @@
           ]
         },
         "Runtime": "nodejs14.x",
-        "Layers": [],
+        "Layers": [
+          {
+            "Ref": "functionfakesnewsquizappDependenciesLayerArn"
+          }
+        ],
         "Timeout": "25",
         "Code": {
           "S3Bucket": {

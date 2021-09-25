@@ -1,5 +1,5 @@
-const AWSXRay = require('aws-xray-sdk-core');
-const { SSMClient, GetParametersByPathCommand } = AWSXRay.captureAWS(require('aws-sdk/client-ssm'));
+//const AWSXRay = require("aws-xray-sdk-core");
+const { SSMClient, GetParametersByPathCommand } = require("@aws-sdk/client-ssm");
 const region = process.env.REGION;
 const ssm = new SSMClient({ region });
 const systemPhoneNumber = process.env.TWILIO_PHONE_NUMBER;
@@ -12,16 +12,16 @@ const command = new GetParametersByPathCommand(input);
 
 exports.handler = async (event) => {
     const { inviteePhoneNumber } = JSON.parse(event.body);
-
+    
     try {
         const { Parameters } = await ssm.send(command);
         const [twilioAccountId, twilioAuthToken] = Parameters;
-        const twilio = require('twilio')(twilioAccountId, twilioAuthToken, { lazyLoading: true });
+        const twilio = require("twilio")(twilioAccountId.Value, twilioAuthToken.Value, { lazyLoading: true });
         await twilio.messages.create({
-            body: 'Hello from lambda',
+            body: "Hello from lambda",
             to: inviteePhoneNumber,
             from: systemPhoneNumber
-        })
+        });
     
         return {
             statusCode: 200,

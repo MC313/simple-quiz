@@ -12,10 +12,38 @@
       "service": "Lambda",
       "dependsOn": [
         {
+          "category": "function",
+          "resourceName": "fakesnewsquizappDependenciesLayer",
+          "attributes": [
+            "Arn"
+          ]
+        },
+        {
           "category": "storage",
           "resourceName": "QuotesDB",
           "attributes": [
             "Name",
+            "Arn"
+          ]
+        }
+      ]
+    },
+    "sendInviteLambda": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "fakesnewsquizappDependenciesLayer",
+          "attributes": [
+            "Arn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "fakesnewsquizappTwilioLayer",
+          "attributes": [
             "Arn"
           ]
         }
@@ -27,14 +55,32 @@
       "service": "Lambda",
       "dependsOn": [
         {
+          "category": "function",
+          "resourceName": "fakesnewsquizappDependenciesLayer",
+          "attributes": [
+            "Arn"
+          ]
+        },
+        {
           "category": "storage",
           "resourceName": "QuotesDB",
           "attributes": [
             "Name",
-            "Arn"
+            "Arn",
+            "StreamArn"
           ]
         }
       ]
+    },
+    "fakesnewsquizappDependenciesLayer": {
+      "providerPlugin": "awscloudformation",
+      "service": "LambdaLayer",
+      "build": true
+    },
+    "fakesnewsquizappTwilioLayer": {
+      "providerPlugin": "awscloudformation",
+      "service": "LambdaLayer",
+      "build": true
     }
   },
   "auth": {

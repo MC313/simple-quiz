@@ -16,7 +16,7 @@
       "Default": "/QuizApp/Twilio"
     },
     "twilioPhoneNumber": {
-      "Type": "AWS::SSM::Parameter<String>",
+      "Type": "AWS::SSM::Parameter::Value<String>",
       "Default": "/QuizApp/Twilio/PhoneNumber"
     },
     "functionfakesnewsquizappDependenciesLayerArn": {
@@ -182,11 +182,11 @@
             {
               "Effect": "Allow",
               "Action": [
-                "ssm:getParameter"
+                "ssm:GetParametersByPath"
               ],
               "Resource": {
                 "Fn::Sub": [
-                  "arn:aws:ssm:${AWS::Region}:${AWS::AccountId}:parameter/${Path}/*",
+                  "arn:aws:ssm:${AWS::Region}:${AWS::AccountId}:parameter${Path}",
                   {
                     "Path": {
                       "Ref": "twilioCredsPath"

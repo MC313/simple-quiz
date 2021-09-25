@@ -36,11 +36,23 @@
       "function": {
         "sendAnswerLambda": {
           "deploymentBucketName": "amplify-fakesnewsquizapp-main-05725-deployment",
-          "s3Key": "amplify-builds/sendAnswerLambda-79744631585358675731-build.zip"
+          "s3Key": "amplify-builds/sendAnswerLambda-65643532746c364c744e-build.zip"
         },
         "getQuoteLambda": {
           "deploymentBucketName": "amplify-fakesnewsquizapp-main-05725-deployment",
-          "s3Key": "amplify-builds/getQuoteLambda-7571376537394c423859-build.zip"
+          "s3Key": "amplify-builds/getQuoteLambda-41692b676d6362643034-build.zip"
+        },
+        "fakesnewsquizappDependenciesLayer": {
+          "deploymentBucketName": "amplify-fakesnewsquizapp-main-05725-deployment",
+          "s3Key": "amplify-builds/fakesnewsquizappDependenciesLayer-LambdaLayerVersioncba1beb0-build.zip"
+        },
+        "fakesnewsquizappTwilioLayer": {
+          "deploymentBucketName": "amplify-fakesnewsquizapp-main-05725-deployment",
+          "s3Key": "amplify-builds/fakesnewsquizappTwilioLayer-LambdaLayerVersion11c87e2b-build.zip"
+        },
+        "sendInviteLambda": {
+          "deploymentBucketName": "amplify-fakesnewsquizapp-main-05725-deployment",
+          "s3Key": "amplify-builds/sendInviteLambda-7559594b78534f565158-build.zip"
         }
       }
     }
