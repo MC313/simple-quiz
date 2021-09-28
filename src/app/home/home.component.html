@@ -1,0 +1,13 @@
+<main class="main">
+  <fn-scoreboard [score]="score"></fn-scoreboard>
+  <fn-quote-card 
+    [quote]="quote" 
+    [correctAnswer]="answer" 
+    (closingOverlay)="resetCard()"
+    (userAnswer)="onSubmit($event)">
+  </fn-quote-card>
+</main>
+
+<footer class="error-container">
+  <p *ngIf="error" class="error">{{error}}</p>
+</footer>

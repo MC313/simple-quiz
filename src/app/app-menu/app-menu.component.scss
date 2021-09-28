@@ -1,0 +1,17 @@
+@import '../../styles.scss';
+
+.menu__container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 9;
+    width: 100%;
+    height: 600px;
+    transform: translateY(100%);
+    background: #000;
+    color: #fff;
+
+    &.active {
+        transform: translateY(0%);
+    }
+}

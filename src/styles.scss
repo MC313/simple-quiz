@@ -27,14 +27,20 @@ $card-border-radius: 8px;
   border-bottom-color: darken($white, 4%);
   border-radius: $card-border-radius;
   box-shadow: 5px 5px 25px 0 rgba(46, 61, 73, 0.3);
-  background-color: $almost-white;
+  background: $almost-white;
   @media screen and (min-width: 481px) {
     padding-bottom: 15px;
   }
 }
 
+%fill-space {
+  min-width: 100%;
+  min-height: 100%;
+}
+
 :root {
   font-size: 16px;
+  background: $white;
 }
 
 html,
@@ -44,6 +50,7 @@ body {
   margin: 0px;
   padding: 0px;
   overflow: hidden;
+  background: $white;
 }
 
 * {

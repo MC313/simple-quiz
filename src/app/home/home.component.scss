@@ -1,0 +1,39 @@
+@import '../../styles.scss';
+
+:host {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #eeeeee;
+}
+
+.main {
+    width: 100%;
+    height: 100%;
+    min-width: 440px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    overflow: auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: $white;
+  }
+  
+  .error-container {
+      display: flex;
+      align-items: center;
+  }
+  
+  .error {
+      width: 100%;
+      font-size: 0.85rem;
+      text-align: center;
+      padding: 12px;
+      margin: 0px;
+      background: #cc0000;
+      color: #ffffff;
+  }

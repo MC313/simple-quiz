@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { NgModule } from '@angular/core';
 
 import {
   AmplifyAngularModule,
@@ -12,9 +12,14 @@ import API from '@aws-amplify/api';
 
 import { AppComponent } from './app.component';
 import { QuoteCardComponent } from './quote-card/quote-card.component';
-import { TopicsComponent } from './topics/topics.component';
-import { LoadingIconComponent } from './loading-icon/loading-icon.component';
+import { HomeComponent } from './home/home.component';
 import { FnScoreboardComponent } from './fn-scoreboard/fn-scoreboard.component';
+import { LoadingIconComponent } from './loading-icon/loading-icon.component';
+import { TopicsComponent } from './topics/topics.component';
+import { AppRoutingModule } from './app-routing.module';
+import { AppMenuComponent } from './app-menu/app-menu.component';
+import { AppMenuButtonComponent } from './app-menu/app-menu-button.component';
+
 
 @NgModule({
   declarations: [
@@ -22,13 +27,17 @@ import { FnScoreboardComponent } from './fn-scoreboard/fn-scoreboard.component';
     QuoteCardComponent,
     TopicsComponent,
     LoadingIconComponent,
-    FnScoreboardComponent
+    FnScoreboardComponent,
+    HomeComponent,
+    AppMenuComponent,
+    AppMenuButtonComponent
   ],
   imports: [
     AmplifyAngularModule,
     BrowserModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule
   ],
   providers: [
     {
