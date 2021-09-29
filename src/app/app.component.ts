@@ -8,7 +8,7 @@ import { MenuState } from './MenuState';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  menuState: MenuState = "HIDE";
+  menuState: MenuState = "SHOW";
   
   updateMenuState() {
     this.menuState = (this.menuState === "SHOW" ? "HIDE" : "SHOW");

@@ -1,16 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
 $primary: #ff3d00;
-$primary-text: #182d55;
 $secondary: #ff7539;
+$primary-light: #ff8a64;
+$primary-lighter: #ffa286;
+$primary-text: #182d55;
 $white: #e5e7ea;
 $almost-white: darken(#faf9f6, 2%);
 $button-border-radius: 4px;
 $card-border-radius: 8px;
 
-%absolute-center {
+%vertical-center {
+  display: flex;
+  align-items: center;
+}
+
+%horizontal-center {
   display: flex;
   justify-content: center;
-  align-items: center;
+}
+
+%absolute-center {
+  @extend %vertical-center;
+  @extend %horizontal-center;
 }
 
 %card {
@@ -21,8 +32,7 @@ $card-border-radius: 8px;
   display: block;
   overflow: hidden;
   margin: 0px 10px;
-  padding: 30px;
-  padding-bottom: 15px;
+  padding: 15px 30px;
   border: 1px solid darken($white, 4%);
   border-bottom-color: darken($white, 4%);
   border-radius: $card-border-radius;
@@ -53,8 +63,16 @@ body {
   background: $white;
 }
 
+li {
+  list-style: none;
+}
+
 * {
   box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
 }
 
 .centered {

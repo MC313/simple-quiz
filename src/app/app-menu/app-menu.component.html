@@ -1,11 +1,26 @@
-<section class="menu__container" [ngClass]="{'active': menuState === 'SHOW'}">
+<section class="menu__container" (click)="toggleMenu()" [ngClass]="{'active': menuState === 'SHOW'}">
     <div class="menu">
         <ul class="menu__items">
             <li class="menu__item">
-                <a href="" class="menu__link">Invite User</a>
+                <a routerLink="#" class="menu__link">
+                    <span class="link__icon">&#9993;</span>
+                    <span class="link__divider"></span>
+                    <span class="link__text">Invite User</span>
+                </a>
             </li>
             <li class="menu__item">
-                <a href="" class="menu__link">Restart Game</a>
+                <a routerLink="#" class="menu__link">
+                    <span class="link__icon">&#63;</span>
+                    <span class="link__divider"></span>
+                    <span class="link__text">Restart Game</span>
+                </a>
+            </li>
+            <li class="menu__item">
+                <a routerLink="#" class="menu__link">
+                    <span class="link__icon">&#9881;</span>
+                    <span class="link__divider"></span>
+                    <span class="link__text">Settings</span>
+                </a>
             </li>
         </ul>
     </div>
