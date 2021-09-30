@@ -18,7 +18,6 @@ import { LoadingIconComponent } from './loading-icon/loading-icon.component';
 import { TopicsComponent } from './topics/topics.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppMenuComponent } from './app-menu/app-menu.component';
-import { AppMenuButtonComponent } from './app-menu/app-menu-button.component';
 
 
 @NgModule({
@@ -29,8 +28,7 @@ import { AppMenuButtonComponent } from './app-menu/app-menu-button.component';
     LoadingIconComponent,
     FnScoreboardComponent,
     HomeComponent,
-    AppMenuComponent,
-    AppMenuButtonComponent
+    AppMenuComponent
   ],
   imports: [
     AmplifyAngularModule,

@@ -15,6 +15,7 @@
 .fn-card {
   height: 100%;
   display: block;
+
   .fn-card__topic {
     height: 25px;
     display: flex;
@@ -25,15 +26,15 @@
   
   .content-wrapper {
     @extend %absolute-center;
+    
+    &.fn-card__quote {
+      display: flex;
+      width: 100%;
+      flex-direction: column;
+      justify-content: center;
+    }
   }
 
-  .content-wrapper .fn-card__quote {
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    justify-content: center;
-  }
-  
   .fn-card__quote { 
     font-family: Arial, Helvetica, sans-serif;
     height: 150px;
@@ -43,6 +44,7 @@
     overflow-y: auto;
     color: darken($primary, 0%);
     @media screen and (min-width: 481px) {
+      height: 200px;
       margin-bottom: 15px;
     }
   }
