@@ -18,23 +18,23 @@
 
   .fn-card__topic {
     height: 25px;
-    display: flex;
-    align-items: center;
+    @extend %vertical-center;
     margin-bottom: 10px;
+    font-size: $font-primary;
     color: $primary-text;
   }
   
   .content-wrapper {
     @extend %absolute-center;
-    
-    &.fn-card__quote {
-      display: flex;
-      width: 100%;
-      flex-direction: column;
-      justify-content: center;
-    }
   }
 
+  .content-wrapper .fn-card__quote {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
   .fn-card__quote { 
     font-family: Arial, Helvetica, sans-serif;
     height: 150px;
@@ -44,7 +44,6 @@
     overflow-y: auto;
     color: darken($primary, 0%);
     @media screen and (min-width: 481px) {
-      height: 200px;
       margin-bottom: 15px;
     }
   }
@@ -56,14 +55,13 @@
   flex-direction: column;
   justify-content: center;
   .button {
-    border: 2px solid lighten($primary, 8%);
+    border-color: lighten($primary, 8%);
     width: 100%;
     height: 35px;
     display: block;
     border-radius: $button-border-radius;
     background-color: lighten($primary, 8%);
     color: #ffffff;
-    transition: background-color 0.3s ease-in;
     &:first-of-type {
       margin-right: 0px;
     }
@@ -72,7 +70,6 @@
       margin-top: 12px;
     }
     &:hover {
-      cursor: pointer;
       color: #ffffff;
       border: 2px solid $primary;
       background-color: $primary;
@@ -134,7 +131,7 @@
     right: 0;
     margin-right: 20px;
     margin-top: 10px;
-    font-size: 2rem;
+    font-size: $font-xl;
     &:hover {
       cursor: pointer;
     }

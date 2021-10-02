@@ -1,7 +1,8 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {
   AmplifyAngularModule,
@@ -11,13 +12,14 @@ import {
 import API from '@aws-amplify/api';
 
 import { AppComponent } from './app.component';
-import { QuoteCardComponent } from './quote-card/quote-card.component';
+import { AppMenuComponent } from './app-menu/app-menu.component';
 import { HomeComponent } from './home/home.component';
-import { FnScoreboardComponent } from './fn-scoreboard/fn-scoreboard.component';
+import { InviteComponent } from './app-menu/invite.component';
 import { LoadingIconComponent } from './loading-icon/loading-icon.component';
+import { QuoteCardComponent } from './quote-card/quote-card.component';
+import { FnScoreboardComponent } from './fn-scoreboard/fn-scoreboard.component';
 import { TopicsComponent } from './topics/topics.component';
 import { AppRoutingModule } from './app-routing.module';
-import { AppMenuComponent } from './app-menu/app-menu.component';
 
 
 @NgModule({
@@ -28,14 +30,16 @@ import { AppMenuComponent } from './app-menu/app-menu.component';
     LoadingIconComponent,
     FnScoreboardComponent,
     HomeComponent,
-    AppMenuComponent
+    AppMenuComponent,
+    InviteComponent
   ],
   imports: [
     AmplifyAngularModule,
+    AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
+    FormsModule,
     HttpClientModule,
-    AppRoutingModule
   ],
   providers: [
     {
@@ -45,7 +49,6 @@ import { AppMenuComponent } from './app-menu/app-menu.component';
       }
     }
   ],
-  bootstrap: [AppComponent],
-  entryComponents: [QuoteCardComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule {}

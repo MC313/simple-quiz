@@ -1,1 +1,1 @@
-export type MenuState = "SHOW" | "HIDE";
+export type MenuState = "ACTIVE" | "INACTIVE";

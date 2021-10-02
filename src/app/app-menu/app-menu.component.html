@@ -1,27 +1,31 @@
-<section class="menu__container" (click)="toggleMenu()" [ngClass]="{'active': menuState === 'SHOW'}">
+<section class="menu__container" (click)="toggleMenu()" [ngClass]="{'active': menuState === 'ACTIVE'}">
     <div class="menu">
-        <ul class="menu__items">
-            <li class="menu__item">
-                <a routerLink="#" class="menu__link">
-                    <span class="link__icon">&#9993;</span>
-                    <span class="link__divider"></span>
-                    <span class="link__text">Invite User</span>
-                </a>
-            </li>
-            <li class="menu__item">
-                <a routerLink="#" class="menu__link">
-                    <span class="link__icon">&#63;</span>
-                    <span class="link__divider"></span>
-                    <span class="link__text">Restart Game</span>
-                </a>
-            </li>
-            <li class="menu__item">
-                <a routerLink="#" class="menu__link">
-                    <span class="link__icon">&#9881;</span>
-                    <span class="link__divider"></span>
-                    <span class="link__text">Settings</span>
-                </a>
-            </li>
-        </ul>
+        <div class="menu__buttons">
+            <button 
+                type="button" 
+                class="menu__button" 
+                (click)="toggleMenuItem('INVITE')"
+                [ngClass]="{'active': activeMenuItem === 'INVITE'}"
+            >
+                <span class="button__icon">&#9993;</span>
+                <span class="button__text">Invite Player</span>
+            </button>
+            <button
+                type="button" 
+                class="menu__button" 
+                (click)="toggleMenuItem('SETTINGS')"
+                [ngClass]="{'active': activeMenuItem === 'SETTINGS'}"
+            >
+                <span class="button__icon">&#9881;</span>
+                <span class="button__text">Settings</span>
+            </button>
+        </div>
+        <div class="menu__content">
+            <ng-container [ngSwitch]="activeMenuItem">
+                <ng-container *ngSwitchCase="'INVITE'">
+                    <fn-invite></fn-invite>
+                </ng-container>
+            </ng-container>
+        </div>
     </div>
 </section>

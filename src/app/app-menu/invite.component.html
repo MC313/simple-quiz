@@ -1,0 +1,27 @@
+<form class="invite__form" #phoneNumberForm="ngForm" (ngSubmit)="onSubmit(phoneNumberForm.value)" >
+    <label for="invite__label">
+      Enter the phone number of a friend and invite them to play against you.
+    </label>
+    <p class="phone__format">
+      Format: 3134758724
+    </p>
+    <input 
+        type="tel" 
+        name="phone" 
+        minlength="10" 
+        maxlength="10"
+        [(ngModel)]="phoneNumber"
+        #phoneNumber="ngModel"
+        required
+    >
+    <code>{{phoneNumberForm.values | json}}</code>
+    <button type="submit" [disabled]="!phoneNumberForm.valid">Invite Player</button>
+    <div *ngIf="phoneNumber.errors" class="invite__error">
+      <div *ngIf="phoneNumber.errors?.required">
+        Phone number is required.
+      </div>
+      <div *ngIf="phoneNumber.errors?.minlength">
+        Phone number must be 10 characters long.
+      </div>
+    </div>
+</form>

@@ -1,0 +1,33 @@
+@import '../../styles.scss';
+
+:host {
+    @extend %absolute-center;
+    @extend %fill-space;
+}
+
+.invite__form {
+    @extend %absolute-center;
+    @extend %fill-space;
+    @extend %flex-column;
+}
+
+.invite__label[for="phone"] {
+    width: 80%;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+input[type="tel"] {
+    width: 75%;
+    height: 2rem;
+    margin-bottom: 15px;
+}
+
+button[type="submit"] {
+    background: $primary;
+}
+
+input[type="tel"] + button[type="submit"] {
+    display: block;
+    clear: both;
+}
